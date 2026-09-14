@@ -5,6 +5,7 @@
 @layer base {
   html { @apply scroll-smooth; }
   body { @apply bg-navy-950 text-white; }
+  h1, h2, h3 { @apply font-display; }
 }
 
 @layer components {
