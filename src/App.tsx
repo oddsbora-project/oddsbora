@@ -3,6 +3,8 @@ import { AuthProvider } from '@/lib/auth-context'
 import Layout from '@/components/Layout'
 import AppLayout from '@/components/AppLayout'
 import ProtectedRoute from '@/components/ProtectedRoute'
+import AdminRoute from '@/components/AdminRoute'
+import AdminLayout from '@/components/AdminLayout'
 
 import Landing from '@/pages/public/Landing'
 import Features from '@/pages/public/Features'
@@ -24,6 +26,13 @@ import Favorites from '@/pages/app/Favorites'
 import Notifications from '@/pages/app/Notifications'
 import Profile from '@/pages/app/Profile'
 import Subscription from '@/pages/app/Subscription'
+
+import AdminOverview from '@/pages/admin/Overview'
+import AdminMatches from '@/pages/admin/Matches'
+import AdminOdds from '@/pages/admin/Odds'
+import AdminPredictions from '@/pages/admin/Predictions'
+import AdminUsers from '@/pages/admin/Users'
+import AdminAudit from '@/pages/admin/Audit'
 
 export default function App() {
   return (
@@ -53,6 +62,17 @@ export default function App() {
             <Route path="notifications" element={<Notifications />} />
             <Route path="profile" element={<Profile />} />
             <Route path="subscription" element={<Subscription />} />
+          </Route>
+
+          <Route element={<AdminRoute />}>
+            <Route element={<AdminLayout />}>
+              <Route path="admin" element={<AdminOverview />} />
+              <Route path="admin/matches" element={<AdminMatches />} />
+              <Route path="admin/odds" element={<AdminOdds />} />
+              <Route path="admin/predictions" element={<AdminPredictions />} />
+              <Route path="admin/users" element={<AdminUsers />} />
+              <Route path="admin/audit" element={<AdminAudit />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
