@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { AuthProvider } from '@/lib/auth-context'
 import Layout from '@/components/Layout'
+import AppLayout from '@/components/AppLayout'
 import ProtectedRoute from '@/components/ProtectedRoute'
 
 import Landing from '@/pages/public/Landing'
@@ -38,8 +39,10 @@ export default function App() {
           <Route path="responsible-use" element={<ResponsibleUse />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+        </Route>
 
-          <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute />}>
+          <Route element={<AppLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="matches" element={<Matches />} />
             <Route path="matches/:id" element={<MatchDetail />} />
