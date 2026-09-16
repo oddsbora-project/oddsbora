@@ -4,7 +4,13 @@
 
 @layer base {
   html { @apply scroll-smooth; }
-  body { @apply bg-navy-950 text-white; }
+  body {
+    @apply bg-navy-950 text-white;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(34, 197, 94, 0.08), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(234, 179, 8, 0.06), transparent 35%);
+    background-attachment: fixed;
+  }
   h1, h2, h3 { @apply font-display; }
 }
 
@@ -21,9 +27,26 @@
   .badge-warning {
     @apply bg-signal-yellow/15 text-signal-yellow text-xs font-semibold px-2 py-1 rounded-md;
   }
+
+  /* Premium glassmorphism panel: frosted, translucent, subtle border + shadow */
+  .glass-panel {
+    @apply bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.35)];
+  }
+  .glass-card {
+    @apply bg-white/[0.05] backdrop-blur-lg border border-white/10 rounded-xl p-5 transition-all duration-300;
+  }
+  .glass-card:hover {
+    @apply bg-white/[0.08] border-signal-green/30 -translate-y-0.5;
+  }
+  .glass-stat {
+    @apply bg-white/[0.07] backdrop-blur-lg border border-white/10 rounded-xl p-4;
+  }
+  .glass-divider {
+    @apply border-t border-white/10;
+  }
 }
 
-/* Hero carousel animation \u2014 slow zoom, glow pulse, caption fade-in */
+/* Hero carousel animation */
 @keyframes kenburns {
   0% { transform: scale(1); }
   100% { transform: scale(1.08); }
@@ -34,7 +57,7 @@
 
 @keyframes glow-pulse {
   0%, 100% { box-shadow: 0 0 0px rgba(34, 197, 94, 0); }
-  50% { box-shadow: 0 0 28px rgba(34, 197, 94, 0.25); }
+  50% { box-shadow: 0 0 32px rgba(34, 197, 94, 0.22); }
 }
 .hero-glow {
   animation: glow-pulse 4s ease-in-out infinite;
@@ -46,4 +69,12 @@
 }
 .hero-caption-in {
   animation: caption-in 0.6s ease-out 0.3s both;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fade-up 0.7s ease-out both;
 }
