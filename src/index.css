@@ -22,3 +22,28 @@
     @apply bg-signal-yellow/15 text-signal-yellow text-xs font-semibold px-2 py-1 rounded-md;
   }
 }
+
+/* Hero carousel animation \u2014 slow zoom, glow pulse, caption fade-in */
+@keyframes kenburns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+.hero-kenburns {
+  animation: kenburns 6s ease-out forwards;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(34, 197, 94, 0); }
+  50% { box-shadow: 0 0 28px rgba(34, 197, 94, 0.25); }
+}
+.hero-glow {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes caption-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-caption-in {
+  animation: caption-in 0.6s ease-out 0.3s both;
+}
