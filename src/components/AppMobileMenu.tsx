@@ -39,8 +39,8 @@ export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
 
   return (
     <div className="fixed inset-0 z-50 bg-navy-950 flex flex-col md:hidden">
-      <div className="flex items-center justify-between px-4 h-14 border-b border-navy-700">
-        <span className="font-display font-bold text-lg">OddsBora</span>
+      <div className="flex items-center justify-between px-4 h-16 border-b border-navy-700">
+        <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
         <button onClick={onClose} aria-label="Close menu" className="text-white/70 hover:text-white p-1">
           <X size={24} />
         </button>
