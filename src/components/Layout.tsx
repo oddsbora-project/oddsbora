@@ -9,7 +9,7 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-navy-950 pb-16 md:pb-0">
-      <header className="border-b border-navy-700 sticky top-0 bg-navy-950/95 backdrop-blur z-40">
+      <header className="border-b border-white/10 sticky top-0 bg-navy-950/80 backdrop-blur-xl z-40">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img src="/oddsbora-logo.png" alt="OddsBora" className="h-11 w-auto object-contain" />
@@ -38,7 +38,7 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="hidden md:block border-t border-navy-700 text-xs text-white/40 text-center py-6 px-4">
+      <footer className="hidden md:block border-t border-white/10 text-xs text-white/40 text-center py-6 px-4">
         OddsBora is a sports analytics platform, not a bookmaker. It does not guarantee outcomes or profits.
         18+ only. <Link to="/responsible-use" className="underline">Responsible use</Link>
       </footer>
