@@ -24,7 +24,7 @@ export default function HeroCarousel() {
   }, [])
 
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl border border-navy-600 h-[220px] sm:h-[320px] md:h-[420px] hero-glow">
+    <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 h-[220px] sm:h-[320px] md:h-[420px] hero-glow shadow-[0_8px_40px_rgba(0,0,0,0.4)]">
       {SLIDES.map((slide, i) => (
         <div
           key={slide.image}
@@ -41,9 +41,9 @@ export default function HeroCarousel() {
             key={`${slide.image}-caption`}
             className={`absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-xs ${i === active ? 'hero-caption-in' : ''}`}
           >
-            <div className="inline-flex flex-col gap-1 bg-navy-950/70 backdrop-blur border border-signal-green/30 rounded-xl px-4 py-3">
+            <div className="inline-flex flex-col gap-1 bg-white/[0.08] backdrop-blur-xl border border-signal-green/30 rounded-xl px-4 py-3">
               <span className="text-signal-green text-xs font-mono uppercase tracking-wide">{slide.caption}</span>
-              <span className="text-white/80 text-sm">{slide.detail}</span>
+              <span className="text-white/85 text-sm">{slide.detail}</span>
             </div>
           </div>
         </div>
