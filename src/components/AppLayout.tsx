@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { LineChart, Home, ListChecks, Radio, User, Menu as MenuIcon } from 'lucide-react'
+import { Home, ListChecks, Radio, User, Menu as MenuIcon } from 'lucide-react'
 import { useAuth } from '@/lib/auth-context'
 import AppMobileMenu from './AppMobileMenu'
 
@@ -27,10 +27,9 @@ export default function AppLayout() {
   return (
     <div className="min-h-screen flex flex-col bg-navy-950 pb-16 md:pb-0">
       <header className="border-b border-navy-700 sticky top-0 bg-navy-950/95 backdrop-blur z-40">
-        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-          <Link to="/dashboard" className="flex items-center gap-2 font-display font-bold text-lg">
-            <LineChart className="text-signal-green" size={22} />
-            OddsBora
+        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+          <Link to="/dashboard" className="flex items-center">
+            <img src="/oddsbora-logo.png" alt="OddsBora" className="h-11 w-auto object-contain" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
