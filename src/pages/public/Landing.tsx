@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
 import { TrendingUp, Scale, ShieldCheck, BrainCircuit } from 'lucide-react'
+import HeroCarousel from '@/components/HeroCarousel'
 
 export default function Landing() {
   return (
     <div>
-      <section className="max-w-5xl mx-auto px-4 pt-16 pb-12 text-center">
+      <section className="max-w-5xl mx-auto px-4 pt-6 sm:pt-10">
+        <HeroCarousel />
+      </section>
+
+      <section className="max-w-5xl mx-auto px-4 pt-10 pb-12 text-center">
         <p className="text-signal-green font-mono text-sm tracking-widest uppercase mb-3">
           AI-Powered Sports Intelligence
         </p>
@@ -13,8 +18,7 @@ export default function Landing() {
         </h1>
         <p className="text-xl text-white/80 mb-2">Read the odds. Know the risk.</p>
         <p className="text-white/60 max-w-xl mx-auto mb-8">
-          Turn sports data and market information into clearer probabilities, signals,
-          and risk-aware decisions.
+          Turn sports data and market information into clearer probabilities, signals, and risk-aware decisions.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link to="/register" className="btn-primary">Explore Intelligence</Link>
