@@ -21,8 +21,8 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 
   return (
     <div className="fixed inset-0 z-50 bg-navy-950 flex flex-col md:hidden">
-      <div className="flex items-center justify-between px-4 h-14 border-b border-navy-700">
-        <span className="font-display font-bold text-lg">OddsBora</span>
+      <div className="flex items-center justify-between px-4 h-16 border-b border-navy-700">
+        <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
         <button onClick={onClose} aria-label="Close menu" className="text-white/70 hover:text-white p-1">
           <X size={24} />
         </button>
@@ -43,7 +43,6 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
         })}
       </nav>
 
-      {/* Account access is intentionally plain, optional list items \u2014 never a forced gate */}
       <div className="border-t border-navy-700">
         <Link to="/login" onClick={onClose} className="flex items-center gap-3 px-5 py-4 text-white/85 hover:text-white hover:bg-navy-900 text-[15px]">
           <LogIn size={18} className="text-white/50" /> Log in
