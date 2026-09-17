@@ -28,7 +28,7 @@
     @apply bg-signal-yellow/15 text-signal-yellow text-xs font-semibold px-2 py-1 rounded-md;
   }
 
-  /* Premium glassmorphism panel: frosted, translucent, subtle border + shadow */
+  /* Dark glassmorphism \u2014 used on dark-background pages (dashboard, matches, etc.) */
   .glass-panel {
     @apply bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.35)];
   }
@@ -41,34 +41,36 @@
   .glass-stat {
     @apply bg-white/[0.07] backdrop-blur-lg border border-white/10 rounded-xl p-4;
   }
-  .glass-divider {
-    @apply border-t border-white/10;
+
+  /* Light glassmorphism \u2014 used specifically on the white-background landing page */
+  .glass-panel-light {
+    @apply bg-black/[0.03] backdrop-blur-xl border border-black/10 rounded-2xl shadow-[0_8px_28px_rgba(0,0,0,0.08)];
+  }
+  .glass-card-light {
+    @apply bg-white border border-black/10 rounded-xl p-5 shadow-sm transition-all duration-300;
+  }
+  .glass-card-light:hover {
+    @apply border-signal-green/40 shadow-md -translate-y-0.5;
+  }
+  .glass-stat-light {
+    @apply bg-black/[0.025] border border-black/10 rounded-xl p-4;
   }
 }
 
-/* Hero carousel animation */
-@keyframes kenburns {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.08); }
-}
-.hero-kenburns {
-  animation: kenburns 6s ease-out forwards;
-}
-
-@keyframes glow-pulse {
+@keyframes glow-pulse-green {
   0%, 100% { box-shadow: 0 0 0px rgba(34, 197, 94, 0); }
-  50% { box-shadow: 0 0 32px rgba(34, 197, 94, 0.22); }
+  50% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.28); }
 }
-.hero-glow {
-  animation: glow-pulse 4s ease-in-out infinite;
+.hero-glow-green {
+  animation: glow-pulse-green 4s ease-in-out infinite;
 }
 
-@keyframes caption-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes glow-pulse-amber {
+  0%, 100% { box-shadow: 0 0 0px rgba(234, 179, 8, 0); }
+  50% { box-shadow: 0 0 30px rgba(234, 179, 8, 0.25); }
 }
-.hero-caption-in {
-  animation: caption-in 0.6s ease-out 0.3s both;
+.hero-glow-amber {
+  animation: glow-pulse-amber 4s ease-in-out infinite 0.5s;
 }
 
 @keyframes fade-up {
