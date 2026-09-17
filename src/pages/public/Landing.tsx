@@ -11,22 +11,84 @@ const FEATURES = [
   { icon: TrendingUp, title: 'Historical performance', desc: 'Full prediction history, wins and losses included. Nothing hidden.', accent: 'violet-500' },
 ]
 
+const QUICK_LINKS = [
+  { icon: BrainCircuit, title: 'Signal Engine', subtitle: 'Model vs Market Analysis' },
+  { icon: ShieldCheck, title: 'AI Analyst', subtitle: 'Plain-Language Explanations' },
+  { icon: TrendingUp, title: 'Performance', subtitle: 'Full History, Wins & Losses' },
+  { icon: Scale, title: 'Risk & Confidence', subtitle: 'Two Separate Signals' },
+]
+
 export default function Landing() {
   return (
     <div className="bg-white text-navy-950">
-      <section className="max-w-3xl mx-auto px-4 pt-10 pb-8 text-center fade-up">
-        <span className="inline-block text-signal-green font-mono text-[11px] tracking-[0.2em] uppercase mb-4 border border-signal-green/25 bg-signal-green/5 rounded-full px-3 py-1">
-          What OddsBora Is
-        </span>
-        <p className="font-display italic text-2xl sm:text-3xl md:text-4xl leading-snug text-navy-950">
-          OddsBora reads the sports data and market odds most people never look at closely —
-          <span className="text-signal-green not-italic font-semibold"> then shows you the probability, the risk, and the gap between them</span>,
-          so you decide with clearer eyes, not blind confidence.
-        </p>
-        <div className="w-14 h-[2px] bg-signal-green/60 mx-auto mt-6" />
+      {/* Intro band \u2014 dark, VTEC-style: eyebrow pill, stat bar, bold two-tone tagline, quick links */}
+      <section className="bg-navy-950 text-white px-4 pt-10 pb-12 fade-up">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="inline-flex items-center gap-2 text-signal-green font-mono text-[11px] tracking-[0.2em] uppercase mb-6 border border-signal-green/30 bg-signal-green/5 rounded-full px-3 py-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-signal-green" />
+            AI-Powered · Nairobi, Kenya
+          </span>
+
+          <div className="flex items-center justify-center gap-4 sm:gap-8 mb-8 font-mono">
+            <div>
+              <p className="text-signal-green text-2xl sm:text-3xl font-bold">5+</p>
+              <p className="text-white/50 text-[10px] sm:text-xs uppercase tracking-wide">Sports Covered</p>
+            </div>
+            <div className="w-px h-8 bg-white/15" />
+            <div>
+              <p className="text-signal-green text-2xl sm:text-3xl font-bold">100%</p>
+              <p className="text-white/50 text-[10px] sm:text-xs uppercase tracking-wide">Transparent Method</p>
+            </div>
+            <div className="w-px h-8 bg-white/15" />
+            <div>
+              <p className="text-signal-green text-2xl sm:text-3xl font-bold">2030</p>
+              <p className="text-white/50 text-[10px] sm:text-xs uppercase tracking-wide">Vision Target</p>
+            </div>
+          </div>
+
+          <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4">
+            Clearer Insights.
+            <br />
+            <span className="text-signal-green">One Match At A Time.</span>
+          </h1>
+
+          <p className="text-white/70 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-8">
+            OddsBora is an AI-powered sports intelligence platform delivering transparent probability
+            models, honest risk assessment, and model-vs-market analysis across the sports Kenya
+            follows most. Built on real data, driven by integrity, designed for clearer decisions —
+            never guaranteed outcomes.
+          </p>
+
+          <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto mb-8">
+            {QUICK_LINKS.map(({ icon: Icon, title, subtitle }) => (
+              <div
+                key={title}
+                className="flex items-start gap-3 text-left border border-signal-green/25 bg-signal-green/5 rounded-lg px-4 py-3"
+              >
+                <Icon className="text-signal-green shrink-0 mt-0.5" size={18} />
+                <div>
+                  <p className="font-semibold text-sm">{title}</p>
+                  <p className="text-white/50 text-xs">{subtitle}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link to="/register" className="btn-primary inline-flex items-center justify-center gap-2">
+              Explore Intelligence <ArrowRight size={16} />
+            </Link>
+            <Link
+              to="/about"
+              className="rounded-lg px-4 py-2.5 border border-white/20 text-white font-medium hover:bg-white/5 transition"
+            >
+              Our Story
+            </Link>
+          </div>
+        </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 pt-2 pb-2">
+      <section className="max-w-5xl mx-auto px-4 pt-10 pb-2">
         <HeroCarousel />
       </section>
 
@@ -34,9 +96,9 @@ export default function Landing() {
         <p className="text-signal-green font-mono text-sm tracking-widest uppercase mb-3">
           AI-Powered Sports Intelligence
         </p>
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+        <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 font-display">
           OddsBora
-        </h1>
+        </h2>
         <p className="text-xl text-slate-700 mb-2">Read the odds. Know the risk.</p>
         <p className="text-slate-500 max-w-xl mx-auto mb-8">
           Turn sports data and market information into clearer probabilities, signals, and risk-aware decisions.
