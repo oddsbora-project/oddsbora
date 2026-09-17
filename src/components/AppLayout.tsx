@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 import { Home, ListChecks, Radio, User, Menu as MenuIcon } from 'lucide-react'
 import { useAuth } from '@/lib/auth-context'
 import AppMobileMenu from './AppMobileMenu'
+import KenyaFlagBadge from './KenyaFlagBadge'
 
 const BOTTOM_TABS = [
   { to: '/dashboard', label: 'Dashboard', icon: Home },
@@ -26,9 +27,9 @@ export default function AppLayout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-navy-950 pb-16 md:pb-0">
-      <header className="border-b border-navy-700 sticky top-0 bg-navy-950/95 backdrop-blur z-40">
+      <header className="border-b border-white/10 sticky top-0 bg-navy-950/80 backdrop-blur-xl z-40">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/dashboard" className="flex items-center">
+          <Link to="/dashboard" className="flex items-center header-logo-in">
             <img src="/oddsbora-logo.png" alt="OddsBora" className="h-11 w-auto object-contain" />
           </Link>
 
@@ -40,13 +41,9 @@ export default function AppLayout() {
             <button onClick={signOut} className="text-white/50 hover:text-white">Log out</button>
           </nav>
 
-          <button
-            onClick={() => setMenuOpen(true)}
-            className="md:hidden text-white/80 hover:text-white p-1"
-            aria-label="Open menu"
-          >
-            <MenuIcon size={24} />
-          </button>
+          <div className="md:hidden header-logo-in" style={{ animationDelay: '150ms' }}>
+            <KenyaFlagBadge />
+          </div>
         </div>
       </header>
 
@@ -54,7 +51,7 @@ export default function AppLayout() {
         <Outlet />
       </main>
 
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-navy-900 border-t border-navy-700 flex justify-around py-2 z-40">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-navy-900 border-t border-white/10 flex justify-around py-2 z-40">
         {BOTTOM_TABS.map((item) => {
           const Icon = item.icon
           const active = location.pathname.startsWith(item.to)
