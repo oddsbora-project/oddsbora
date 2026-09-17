@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { TrendingUp, Scale, ShieldCheck, BrainCircuit, ArrowRight } from 'lucide-react'
 import HeroCarousel from '@/components/HeroCarousel'
 
+// Tailwind safelist: bg-signal-green/10 border-signal-green/25 text-signal-green bg-sky-500/10 border-sky-500/25 text-sky-500 bg-signal-yellow/10 border-signal-yellow/25 text-signal-yellow bg-violet-500/10 border-violet-500/25 text-violet-500
+
 const FEATURES = [
   { icon: BrainCircuit, title: 'Model probability', desc: 'A transparent probability estimate built from structured historical and form data.', accent: 'signal-green' },
   { icon: Scale, title: 'Model vs market', desc: 'See where the model and the market disagree, and by how much.', accent: 'sky-500' },
@@ -12,7 +14,19 @@ const FEATURES = [
 export default function Landing() {
   return (
     <div className="bg-white text-navy-950">
-      <section className="max-w-5xl mx-auto px-4 pt-6 sm:pt-10">
+      <section className="max-w-3xl mx-auto px-4 pt-10 pb-8 text-center fade-up">
+        <span className="inline-block text-signal-green font-mono text-[11px] tracking-[0.2em] uppercase mb-4 border border-signal-green/25 bg-signal-green/5 rounded-full px-3 py-1">
+          What OddsBora Is
+        </span>
+        <p className="font-display italic text-2xl sm:text-3xl md:text-4xl leading-snug text-navy-950">
+          OddsBora reads the sports data and market odds most people never look at closely —
+          <span className="text-signal-green not-italic font-semibold"> then shows you the probability, the risk, and the gap between them</span>,
+          so you decide with clearer eyes, not blind confidence.
+        </p>
+        <div className="w-14 h-[2px] bg-signal-green/60 mx-auto mt-6" />
+      </section>
+
+      <section className="max-w-5xl mx-auto px-4 pt-2 pb-2">
         <HeroCarousel />
       </section>
 
