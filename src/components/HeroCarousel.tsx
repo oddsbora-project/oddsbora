@@ -22,11 +22,14 @@ export default function HeroCarousel() {
           className={`rounded-2xl border border-black/10 bg-white overflow-hidden shadow-lg ${slide.glowClass} fade-up`}
           style={{ animationDelay: `${i * 150}ms` }}
         >
-          <img
-            src={slide.image}
-            alt={slide.caption}
-            className="w-full h-auto block"
-          />
+          <div className="relative overflow-hidden group">
+            <img
+              src={slide.image}
+              alt={slide.caption}
+              className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            />
+            <div className="hero-shimmer" style={{ animationDelay: `${1.5 + i * 1.2}s` }} />
+          </div>
           <div className="px-5 py-4 sm:px-6 sm:py-5">
             <span className="text-signal-green text-xs font-mono uppercase tracking-wide">{slide.caption}</span>
             <p className="text-slate-700 text-sm sm:text-base mt-1">{slide.detail}</p>
