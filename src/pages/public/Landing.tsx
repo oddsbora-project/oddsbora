@@ -2,6 +2,13 @@ import { Link } from 'react-router-dom'
 import { TrendingUp, Scale, ShieldCheck, BrainCircuit, ArrowRight } from 'lucide-react'
 import HeroCarousel from '@/components/HeroCarousel'
 
+const FEATURES = [
+  { icon: BrainCircuit, title: 'Model probability', desc: 'A transparent probability estimate built from structured historical and form data.', accent: 'signal-green' },
+  { icon: Scale, title: 'Model vs market', desc: 'See where the model and the market disagree, and by how much.', accent: 'sky-500' },
+  { icon: ShieldCheck, title: 'Confidence & risk', desc: 'Two separate signals — how sure the model is, and how uncertain the situation is.', accent: 'signal-yellow' },
+  { icon: TrendingUp, title: 'Historical performance', desc: 'Full prediction history, wins and losses included. Nothing hidden.', accent: 'violet-500' },
+]
+
 export default function Landing() {
   return (
     <div className="bg-white text-navy-950">
@@ -69,15 +76,14 @@ export default function Landing() {
           <p className="text-slate-500 text-sm">Four principles, applied to every signal OddsBora publishes.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { icon: BrainCircuit, title: 'Model probability', desc: 'A transparent probability estimate built from structured historical and form data.' },
-            { icon: Scale, title: 'Model vs market', desc: 'See where the model and the market disagree, and by how much.' },
-            { icon: ShieldCheck, title: 'Confidence & risk', desc: 'Two separate signals — how sure the model is, and how uncertain the situation is.' },
-            { icon: TrendingUp, title: 'Historical performance', desc: 'Full prediction history, wins and losses included. Nothing hidden.' },
-          ].map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="glass-card-light">
-              <div className="w-10 h-10 rounded-lg bg-signal-green/10 border border-signal-green/25 flex items-center justify-center mb-3">
-                <Icon className="text-signal-green" size={20} />
+          {FEATURES.map(({ icon: Icon, title, desc, accent }, i) => (
+            <div
+              key={title}
+              className="glass-card-light feature-card-in"
+              style={{ animationDelay: `${i * 120}ms` }}
+            >
+              <div className={`feature-icon-wrap w-10 h-10 rounded-lg bg-${accent}/10 border border-${accent}/25 flex items-center justify-center mb-3`}>
+                <Icon className={`text-${accent}`} size={20} />
               </div>
               <h3 className="font-semibold mb-1 text-navy-950">{title}</h3>
               <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
