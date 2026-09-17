@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { Menu as MenuIcon } from 'lucide-react'
 import MobileMenu from './MobileMenu'
 import PublicBottomNav from './PublicBottomNav'
+import KenyaFlagBadge from './KenyaFlagBadge'
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -11,7 +11,7 @@ export default function Layout() {
     <div className="min-h-screen flex flex-col bg-navy-950 pb-16 md:pb-0">
       <header className="border-b border-white/10 sticky top-0 bg-navy-950/80 backdrop-blur-xl z-40">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center header-logo-in">
             <img src="/oddsbora-logo.png" alt="OddsBora" className="h-11 w-auto object-contain" />
           </Link>
 
@@ -24,13 +24,9 @@ export default function Layout() {
             <Link to="/register" className="btn-primary text-sm py-2 px-3">Get Started</Link>
           </nav>
 
-          <button
-            onClick={() => setMenuOpen(true)}
-            className="md:hidden text-white/80 hover:text-white p-1"
-            aria-label="Open menu"
-          >
-            <MenuIcon size={24} />
-          </button>
+          <div className="md:hidden header-logo-in" style={{ animationDelay: '150ms' }}>
+            <KenyaFlagBadge />
+          </div>
         </div>
       </header>
 
