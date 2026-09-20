@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   X, Home, ListChecks, Radio, FlaskConical, LineChart as LineChartIcon,
-  Star, Bell, User, CreditCard, ShieldCheck, LogOut, Info, ShieldQuestion,
+  Star, Bell, User, CreditCard, ShieldCheck, LogOut, Info, ShieldQuestion, ChevronRight,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth-context'
@@ -59,21 +59,27 @@ export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
           {MENU_ITEMS.map((item) => {
             const Icon = item.icon
             return (
-              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-dark">
-                <span className={`menu-icon-chip ${item.bg}`}>
-                  <Icon size={18} className={item.fg} />
+              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-dark border-b border-white/5">
+                <span className="flex items-center gap-3">
+                  <span className={`menu-icon-chip ${item.bg}`}>
+                    <Icon size={18} className={item.fg} />
+                  </span>
+                  {item.label}
                 </span>
-                {item.label}
+                <ChevronRight size={16} className="text-white/25" />
               </Link>
             )
           })}
 
           {isAdmin && (
-            <Link to="/admin" onClick={onClose} className="menu-item-dark text-signal-yellow">
-              <span className="menu-icon-chip bg-signal-yellow/10">
-                <ShieldCheck size={18} className="text-signal-yellow" />
+            <Link to="/admin" onClick={onClose} className="menu-item-dark text-signal-yellow border-b border-white/5">
+              <span className="flex items-center gap-3">
+                <span className="menu-icon-chip bg-signal-yellow/10">
+                  <ShieldCheck size={18} className="text-signal-yellow" />
+                </span>
+                Admin
               </span>
-              Admin
+              <ChevronRight size={16} className="text-signal-yellow/40" />
             </Link>
           )}
 
@@ -81,11 +87,14 @@ export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
           {INFO_ITEMS.map((item) => {
             const Icon = item.icon
             return (
-              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-dark text-white/60">
-                <span className="menu-icon-chip bg-white/5">
-                  <Icon size={18} className="text-white/40" />
+              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-dark text-white/70 border-b border-white/5">
+                <span className="flex items-center gap-3">
+                  <span className="menu-icon-chip bg-white/5">
+                    <Icon size={18} className="text-white/40" />
+                  </span>
+                  {item.label}
                 </span>
-                {item.label}
+                <ChevronRight size={16} className="text-white/20" />
               </Link>
             )
           })}
@@ -93,10 +102,12 @@ export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
 
         <div className="border-t border-white/10 relative bg-navy-900">
           <button onClick={() => { onClose(); signOut() }} className="menu-item-dark w-full text-left">
-            <span className="menu-icon-chip bg-white/5">
-              <LogOut size={18} />
+            <span className="flex items-center gap-3">
+              <span className="menu-icon-chip bg-white/5">
+                <LogOut size={18} />
+              </span>
+              Log out
             </span>
-            Log out
           </button>
         </div>
       </div>
