@@ -54,6 +54,7 @@
     @apply bg-black/[0.025] border border-black/10 rounded-xl p-4;
   }
 
+  /* Single floating pill navbar \u2014 the only header element on any page */
   .nav-pill {
     @apply max-w-2xl mx-auto rounded-full bg-navy-900/90 backdrop-blur-xl border border-white/10 shadow-lg px-4 h-14 flex items-center justify-between;
   }
@@ -61,12 +62,11 @@
   .menu-backdrop {
     @apply fixed inset-0 z-50 bg-black/50 backdrop-blur-sm;
   }
-  /* Solid, fully opaque panels \u2014 no blur/translucency on the panel itself, only the backdrop behind it */
   .menu-panel-dark {
-    @apply fixed top-0 right-0 h-full w-[86%] max-w-sm bg-navy-900 border-l border-white/10 shadow-2xl flex flex-col overflow-hidden;
+    @apply fixed top-0 right-0 h-full w-[86%] max-w-sm bg-navy-900 border-l border-white/10 shadow-2xl flex flex-col overflow-hidden z-[60];
   }
   .menu-panel-light {
-    @apply fixed top-0 right-0 h-full w-[86%] max-w-sm bg-white border-l border-black/10 shadow-2xl flex flex-col overflow-hidden;
+    @apply fixed top-0 right-0 h-full w-[86%] max-w-sm bg-white border-l border-black/10 shadow-2xl flex flex-col overflow-hidden z-[60];
   }
   .menu-item-dark {
     @apply flex items-center justify-between gap-3 px-5 py-4 text-white font-semibold hover:bg-white/5 text-[15px] transition;
