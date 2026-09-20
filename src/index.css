@@ -19,10 +19,10 @@
     @apply bg-navy-800 border border-navy-600 rounded-xl p-4;
   }
   .btn-primary {
-    @apply bg-signal-green text-navy-950 font-semibold rounded-lg px-4 py-2.5 hover:opacity-90 transition;
+    @apply bg-signal-green text-navy-950 font-semibold rounded-full px-5 py-2.5 hover:opacity-90 transition;
   }
   .btn-secondary {
-    @apply bg-navy-700 text-white font-medium rounded-lg px-4 py-2.5 border border-navy-600 hover:bg-navy-600 transition;
+    @apply bg-navy-700 text-white font-medium rounded-full px-5 py-2.5 border border-navy-600 hover:bg-navy-600 transition;
   }
   .badge-warning {
     @apply bg-signal-yellow/15 text-signal-yellow text-xs font-semibold px-2 py-1 rounded-md;
@@ -53,9 +53,33 @@
   .glass-stat-light {
     @apply bg-black/[0.025] border border-black/10 rounded-xl p-4;
   }
+
+  /* Floating pill navbar \u2014 SoftCr8ors-style capsule shape, OddsBora colors */
+  .nav-pill {
+    @apply max-w-2xl mx-auto rounded-full bg-navy-900/90 backdrop-blur-xl border border-white/10 shadow-lg px-4 h-14 flex items-center justify-between;
+  }
+
+  /* Slide-in menu panel */
+  .menu-backdrop {
+    @apply fixed inset-0 z-50 bg-black/50 backdrop-blur-sm;
+  }
+  .menu-panel-dark {
+    @apply fixed top-0 right-0 h-full w-[86%] max-w-sm bg-navy-900 border-l border-white/10 shadow-2xl flex flex-col overflow-hidden;
+  }
+  .menu-panel-light {
+    @apply fixed top-0 right-0 h-full w-[86%] max-w-sm bg-white border-l border-black/10 shadow-2xl flex flex-col overflow-hidden;
+  }
+  .menu-item-dark {
+    @apply flex items-center gap-3 px-5 py-4 text-white/85 hover:text-white hover:bg-white/5 text-[15px] transition;
+  }
+  .menu-item-light {
+    @apply flex items-center gap-3 px-5 py-4 text-navy-950/85 hover:text-navy-950 hover:bg-black/[0.03] text-[15px] transition;
+  }
+  .menu-icon-chip {
+    @apply w-9 h-9 rounded-xl flex items-center justify-center shrink-0;
+  }
 }
 
-/* Hero slide glow + shimmer */
 @keyframes glow-pulse-green {
   0%, 100% { box-shadow: 0 0 0px rgba(34, 197, 94, 0); }
   50% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.28); }
@@ -73,9 +97,7 @@
   100% { transform: translateX(220%) skewX(-15deg); }
 }
 .hero-shimmer {
-  position: absolute;
-  top: 0; left: 0;
-  width: 35%; height: 100%;
+  position: absolute; top: 0; left: 0; width: 35%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
   animation: shimmer-sweep 3.5s ease-in-out infinite;
   animation-delay: 1.5s;
@@ -88,25 +110,41 @@
 }
 .fade-up { animation: fade-up 0.7s ease-out both; }
 
-/* Feature card entrance + hover motion, staggered by data-index */
 @keyframes card-in {
   from { opacity: 0; transform: translateY(24px) scale(0.97); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
-.feature-card-in {
-  animation: card-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
+.feature-card-in { animation: card-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
 .feature-icon-wrap {
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
 }
-.glass-card-light:hover .feature-icon-wrap {
-  transform: scale(1.15) rotate(-6deg);
-}
+.glass-card-light:hover .feature-icon-wrap { transform: scale(1.15) rotate(-6deg); }
 
-/* Header logo entrance */
 @keyframes logo-in {
   from { opacity: 0; transform: translateX(-8px); }
   to { opacity: 1; transform: translateX(0); }
 }
 .header-logo-in { animation: logo-in 0.5s ease-out both; }
+
+/* Slide-in menu animation */
+@keyframes panel-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.panel-slide-in { animation: panel-slide-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes backdrop-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.backdrop-fade-in { animation: backdrop-fade-in 0.25s ease-out both; }
+
+/* Decorative blurred accent blob, used inside menu panels */
+.menu-blob {
+  position: absolute;
+  width: 220px; height: 220px;
+  border-radius: 9999px;
+  filter: blur(60px);
+  pointer-events: none;
+}
