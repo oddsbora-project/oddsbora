@@ -9,10 +9,10 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-navy-950 pb-16 md:pb-0">
-      <header className="border-b border-white/10 sticky top-0 bg-navy-950/80 backdrop-blur-xl z-40">
-        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center header-logo-in">
-            <img src="/oddsbora-logo.png" alt="OddsBora" className="h-11 w-auto object-contain" />
+      <header className="sticky top-0 z-40 pt-3 px-3">
+        <div className="nav-pill header-logo-in">
+          <Link to="/" className="flex items-center">
+            <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
@@ -21,10 +21,10 @@ export default function Layout() {
             <Link to="/markets" className="hover:text-white">Markets</Link>
             <Link to="/pricing" className="hover:text-white">Pricing</Link>
             <Link to="/login" className="hover:text-white">Log in</Link>
-            <Link to="/register" className="btn-primary text-sm py-2 px-3">Get Started</Link>
+            <Link to="/register" className="btn-primary text-sm py-2 px-4">Get Started</Link>
           </nav>
 
-          <div className="md:hidden header-logo-in" style={{ animationDelay: '150ms' }}>
+          <div className="md:hidden">
             <KenyaFlagBadge />
           </div>
         </div>
