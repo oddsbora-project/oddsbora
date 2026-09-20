@@ -11,7 +11,7 @@
       radial-gradient(circle at 85% 20%, rgba(234, 179, 8, 0.06), transparent 35%);
     background-attachment: fixed;
   }
-  h1, h2, h3 { @apply font-display; }
+  h1, h2, h3 { @apply font-display font-bold; }
 }
 
 @layer components {
@@ -54,15 +54,14 @@
     @apply bg-black/[0.025] border border-black/10 rounded-xl p-4;
   }
 
-  /* Floating pill navbar \u2014 SoftCr8ors-style capsule shape, OddsBora colors */
   .nav-pill {
     @apply max-w-2xl mx-auto rounded-full bg-navy-900/90 backdrop-blur-xl border border-white/10 shadow-lg px-4 h-14 flex items-center justify-between;
   }
 
-  /* Slide-in menu panel */
   .menu-backdrop {
     @apply fixed inset-0 z-50 bg-black/50 backdrop-blur-sm;
   }
+  /* Solid, fully opaque panels \u2014 no blur/translucency on the panel itself, only the backdrop behind it */
   .menu-panel-dark {
     @apply fixed top-0 right-0 h-full w-[86%] max-w-sm bg-navy-900 border-l border-white/10 shadow-2xl flex flex-col overflow-hidden;
   }
@@ -70,10 +69,10 @@
     @apply fixed top-0 right-0 h-full w-[86%] max-w-sm bg-white border-l border-black/10 shadow-2xl flex flex-col overflow-hidden;
   }
   .menu-item-dark {
-    @apply flex items-center gap-3 px-5 py-4 text-white/85 hover:text-white hover:bg-white/5 text-[15px] transition;
+    @apply flex items-center justify-between gap-3 px-5 py-4 text-white font-semibold hover:bg-white/5 text-[15px] transition;
   }
   .menu-item-light {
-    @apply flex items-center gap-3 px-5 py-4 text-navy-950/85 hover:text-navy-950 hover:bg-black/[0.03] text-[15px] transition;
+    @apply flex items-center justify-between gap-3 px-5 py-4 text-navy-950 font-semibold hover:bg-black/[0.03] text-[15px] transition;
   }
   .menu-icon-chip {
     @apply w-9 h-9 rounded-xl flex items-center justify-center shrink-0;
@@ -127,7 +126,6 @@
 }
 .header-logo-in { animation: logo-in 0.5s ease-out both; }
 
-/* Slide-in menu animation */
 @keyframes panel-slide-in {
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
@@ -140,7 +138,6 @@
 }
 .backdrop-fade-in { animation: backdrop-fade-in 0.25s ease-out both; }
 
-/* Decorative blurred accent blob, used inside menu panels */
 .menu-blob {
   position: absolute;
   width: 220px; height: 220px;
