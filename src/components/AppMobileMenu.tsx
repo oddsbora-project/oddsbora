@@ -13,19 +13,17 @@ interface AppMobileMenuProps {
 }
 
 const MENU_ITEMS = [
-  { to: '/dashboard', label: 'Dashboard', icon: Home },
-  { to: '/matches', label: 'Matches', icon: ListChecks },
-  { to: '/signals', label: 'Signals', icon: Radio },
-  { to: '/analysis', label: 'Analysis Centre', icon: FlaskConical },
-  { to: '/performance', label: 'Performance', icon: LineChartIcon },
-  { to: '/favorites', label: 'Favorites', icon: Star },
-  { to: '/notifications', label: 'Notifications', icon: Bell },
-  { to: '/profile', label: 'Profile', icon: User },
-  { to: '/subscription', label: 'Subscription', icon: CreditCard },
+  { to: '/dashboard', label: 'Dashboard', icon: Home, bg: 'bg-signal-green/10', fg: 'text-signal-green' },
+  { to: '/matches', label: 'Matches', icon: ListChecks, bg: 'bg-sky-500/10', fg: 'text-sky-500' },
+  { to: '/signals', label: 'Signals', icon: Radio, bg: 'bg-signal-yellow/10', fg: 'text-signal-yellow' },
+  { to: '/analysis', label: 'Analysis Centre', icon: FlaskConical, bg: 'bg-violet-500/10', fg: 'text-violet-500' },
+  { to: '/performance', label: 'Performance', icon: LineChartIcon, bg: 'bg-signal-green/10', fg: 'text-signal-green' },
+  { to: '/favorites', label: 'Favorites', icon: Star, bg: 'bg-signal-yellow/10', fg: 'text-signal-yellow' },
+  { to: '/notifications', label: 'Notifications', icon: Bell, bg: 'bg-sky-500/10', fg: 'text-sky-500' },
+  { to: '/profile', label: 'Profile', icon: User, bg: 'bg-violet-500/10', fg: 'text-violet-500' },
+  { to: '/subscription', label: 'Subscription', icon: CreditCard, bg: 'bg-signal-green/10', fg: 'text-signal-green' },
 ]
 
-// Informational pages a logged-in user should still be able to reach \u2014
-// these live on the public marketing site, but shouldn't disappear once someone signs in.
 const INFO_ITEMS = [
   { to: '/about', label: 'About OddsBora', icon: Info },
   { to: '/responsible-use', label: 'Responsible Use', icon: ShieldQuestion },
@@ -45,61 +43,62 @@ export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 bg-navy-950 flex flex-col md:hidden">
-      <div className="flex items-center justify-between px-4 h-16 border-b border-white/10">
-        <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
-        <button onClick={onClose} aria-label="Close menu" className="text-white/70 hover:text-white p-1">
-          <X size={24} />
-        </button>
-      </div>
+    <div className="md:hidden">
+      <div className="menu-backdrop backdrop-fade-in" onClick={onClose} />
+      <div className="menu-panel-dark panel-slide-in">
+        <div className="menu-blob bg-signal-green/10 -top-10 -right-10" />
 
-      <nav className="flex-1 overflow-y-auto">
-        {MENU_ITEMS.map((item) => {
-          const Icon = item.icon
-          return (
-            <Link
-              key={item.to} to={item.to} onClick={onClose}
-              className="flex items-center gap-3 px-5 py-4 border-b border-white/5 text-white/85 hover:text-white hover:bg-navy-900 text-[15px]"
-            >
-              <Icon size={18} className="text-signal-green" />
-              {item.label}
+        <div className="flex items-center justify-between px-5 h-16 border-b border-white/10 relative">
+          <img src="/oddsbora-logo.png" alt="OddsBora" className="h-8 w-auto object-contain" />
+          <button onClick={onClose} aria-label="Close menu" className="text-white/70 hover:text-white p-1">
+            <X size={22} />
+          </button>
+        </div>
+
+        <nav className="flex-1 overflow-y-auto relative">
+          {MENU_ITEMS.map((item) => {
+            const Icon = item.icon
+            return (
+              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-dark">
+                <span className={`menu-icon-chip ${item.bg}`}>
+                  <Icon size={18} className={item.fg} />
+                </span>
+                {item.label}
+              </Link>
+            )
+          })}
+
+          {isAdmin && (
+            <Link to="/admin" onClick={onClose} className="menu-item-dark text-signal-yellow">
+              <span className="menu-icon-chip bg-signal-yellow/10">
+                <ShieldCheck size={18} className="text-signal-yellow" />
+              </span>
+              Admin
             </Link>
-          )
-        })}
+          )}
 
-        {isAdmin && (
-          <Link
-            to="/admin" onClick={onClose}
-            className="flex items-center gap-3 px-5 py-4 border-b border-white/5 text-signal-yellow hover:bg-navy-900 text-[15px]"
-          >
-            <ShieldCheck size={18} />
-            Admin
-          </Link>
-        )}
+          <p className="px-5 pt-5 pb-2 text-white/30 text-[11px] uppercase tracking-wide font-mono">About OddsBora</p>
+          {INFO_ITEMS.map((item) => {
+            const Icon = item.icon
+            return (
+              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-dark text-white/60">
+                <span className="menu-icon-chip bg-white/5">
+                  <Icon size={18} className="text-white/40" />
+                </span>
+                {item.label}
+              </Link>
+            )
+          })}
+        </nav>
 
-        <p className="px-5 pt-5 pb-2 text-white/30 text-[11px] uppercase tracking-wide font-mono">About OddsBora</p>
-        {INFO_ITEMS.map((item) => {
-          const Icon = item.icon
-          return (
-            <Link
-              key={item.to} to={item.to} onClick={onClose}
-              className="flex items-center gap-3 px-5 py-4 border-b border-white/5 text-white/60 hover:text-white hover:bg-navy-900 text-[15px]"
-            >
-              <Icon size={18} className="text-white/40" />
-              {item.label}
-            </Link>
-          )
-        })}
-      </nav>
-
-      <div className="border-t border-white/10">
-        <button
-          onClick={() => { onClose(); signOut() }}
-          className="flex items-center gap-3 px-5 py-4 text-white/70 hover:text-white hover:bg-navy-900 text-[15px] w-full text-left"
-        >
-          <LogOut size={18} />
-          Log out
-        </button>
+        <div className="border-t border-white/10 relative bg-navy-900">
+          <button onClick={() => { onClose(); signOut() }} className="menu-item-dark w-full text-left">
+            <span className="menu-icon-chip bg-white/5">
+              <LogOut size={18} />
+            </span>
+            Log out
+          </button>
+        </div>
       </div>
     </div>
   )
