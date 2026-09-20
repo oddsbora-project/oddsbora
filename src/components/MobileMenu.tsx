@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { X, Home, Sparkles, Compass, BarChart3, Tag, Info, ShieldCheck, LogIn, UserPlus } from 'lucide-react'
+import { X, Home, Sparkles, Compass, BarChart3, Tag, Info, ShieldCheck, LogIn, UserPlus, ChevronRight } from 'lucide-react'
 
 interface MobileMenuProps {
   open: boolean
@@ -36,11 +36,14 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
           {MENU_ITEMS.map((item) => {
             const Icon = item.icon
             return (
-              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-light">
-                <span className={`menu-icon-chip ${item.bg}`}>
-                  <Icon size={18} className={item.fg} />
+              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-light border-b border-black/5">
+                <span className="flex items-center gap-3">
+                  <span className={`menu-icon-chip ${item.bg}`}>
+                    <Icon size={18} className={item.fg} />
+                  </span>
+                  {item.label}
                 </span>
-                {item.label}
+                <ChevronRight size={16} className="text-navy-950/25" />
               </Link>
             )
           })}
@@ -48,16 +51,22 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 
         <div className="border-t border-black/10 relative bg-white">
           <Link to="/login" onClick={onClose} className="menu-item-light">
-            <span className="menu-icon-chip bg-black/5">
-              <LogIn size={18} className="text-navy-950/50" />
+            <span className="flex items-center gap-3">
+              <span className="menu-icon-chip bg-black/5">
+                <LogIn size={18} className="text-navy-950/50" />
+              </span>
+              Log in
             </span>
-            Log in
+            <ChevronRight size={16} className="text-navy-950/25" />
           </Link>
           <Link to="/register" onClick={onClose} className="menu-item-light">
-            <span className="menu-icon-chip bg-black/5">
-              <UserPlus size={18} className="text-navy-950/50" />
+            <span className="flex items-center gap-3">
+              <span className="menu-icon-chip bg-black/5">
+                <UserPlus size={18} className="text-navy-950/50" />
+              </span>
+              Create account
             </span>
-            Create account
+            <ChevronRight size={16} className="text-navy-950/25" />
           </Link>
         </div>
       </div>
