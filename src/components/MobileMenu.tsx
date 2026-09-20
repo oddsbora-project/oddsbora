@@ -7,49 +7,59 @@ interface MobileMenuProps {
 }
 
 const MENU_ITEMS = [
-  { to: '/', label: 'Home', icon: Home },
-  { to: '/features', label: 'Features', icon: Sparkles },
-  { to: '/how-it-works', label: 'How It Works', icon: Compass },
-  { to: '/markets', label: 'Markets', icon: BarChart3 },
-  { to: '/pricing', label: 'Pricing', icon: Tag },
-  { to: '/about', label: 'About', icon: Info },
-  { to: '/responsible-use', label: 'Responsible Use', icon: ShieldCheck },
+  { to: '/', label: 'Home', icon: Home, bg: 'bg-signal-green/10', fg: 'text-signal-green' },
+  { to: '/features', label: 'Features', icon: Sparkles, bg: 'bg-sky-500/10', fg: 'text-sky-500' },
+  { to: '/how-it-works', label: 'How It Works', icon: Compass, bg: 'bg-signal-yellow/10', fg: 'text-signal-yellow' },
+  { to: '/markets', label: 'Markets', icon: BarChart3, bg: 'bg-violet-500/10', fg: 'text-violet-500' },
+  { to: '/pricing', label: 'Pricing', icon: Tag, bg: 'bg-signal-green/10', fg: 'text-signal-green' },
+  { to: '/about', label: 'About', icon: Info, bg: 'bg-sky-500/10', fg: 'text-sky-500' },
+  { to: '/responsible-use', label: 'Responsible Use', icon: ShieldCheck, bg: 'bg-signal-yellow/10', fg: 'text-signal-yellow' },
 ]
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 bg-navy-950 flex flex-col md:hidden">
-      <div className="flex items-center justify-between px-4 h-16 border-b border-navy-700">
-        <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
-        <button onClick={onClose} aria-label="Close menu" className="text-white/70 hover:text-white p-1">
-          <X size={24} />
-        </button>
-      </div>
+    <div className="md:hidden">
+      <div className="menu-backdrop backdrop-fade-in" onClick={onClose} />
+      <div className="menu-panel-light panel-slide-in">
+        <div className="menu-blob bg-signal-green/15 -bottom-10 -right-10" />
 
-      <nav className="flex-1 overflow-y-auto">
-        {MENU_ITEMS.map((item) => {
-          const Icon = item.icon
-          return (
-            <Link
-              key={item.to} to={item.to} onClick={onClose}
-              className="flex items-center gap-3 px-5 py-4 border-b border-navy-800 text-white/85 hover:text-white hover:bg-navy-900 text-[15px]"
-            >
-              <Icon size={18} className="text-signal-green" />
-              {item.label}
-            </Link>
-          )
-        })}
-      </nav>
+        <div className="flex items-center justify-between px-5 h-16 border-b border-black/10 relative">
+          <img src="/oddsbora-logo.png" alt="OddsBora" className="h-8 w-auto object-contain" />
+          <button onClick={onClose} aria-label="Close menu" className="text-navy-950/60 hover:text-navy-950 p-1">
+            <X size={22} />
+          </button>
+        </div>
 
-      <div className="border-t border-navy-700">
-        <Link to="/login" onClick={onClose} className="flex items-center gap-3 px-5 py-4 text-white/85 hover:text-white hover:bg-navy-900 text-[15px]">
-          <LogIn size={18} className="text-white/50" /> Log in
-        </Link>
-        <Link to="/register" onClick={onClose} className="flex items-center gap-3 px-5 py-4 text-white/85 hover:text-white hover:bg-navy-900 text-[15px]">
-          <UserPlus size={18} className="text-white/50" /> Create account
-        </Link>
+        <nav className="flex-1 overflow-y-auto relative">
+          {MENU_ITEMS.map((item) => {
+            const Icon = item.icon
+            return (
+              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-light">
+                <span className={`menu-icon-chip ${item.bg}`}>
+                  <Icon size={18} className={item.fg} />
+                </span>
+                {item.label}
+              </Link>
+            )
+          })}
+        </nav>
+
+        <div className="border-t border-black/10 relative bg-white">
+          <Link to="/login" onClick={onClose} className="menu-item-light">
+            <span className="menu-icon-chip bg-black/5">
+              <LogIn size={18} className="text-navy-950/50" />
+            </span>
+            Log in
+          </Link>
+          <Link to="/register" onClick={onClose} className="menu-item-light">
+            <span className="menu-icon-chip bg-black/5">
+              <UserPlus size={18} className="text-navy-950/50" />
+            </span>
+            Create account
+          </Link>
+        </div>
       </div>
     </div>
   )
