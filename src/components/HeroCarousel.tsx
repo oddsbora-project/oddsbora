@@ -11,6 +11,13 @@ const SLIDES = [
     detail: 'Clearer probabilities, honest risk, for the leagues you follow.',
     glowClass: 'hero-glow-amber',
   },
+  {
+    // The new 3D Logo slide
+    image: '/oddsbora-logo.png', 
+    caption: 'The OddsBora Vision',
+    detail: 'AI-powered sports intelligence. Read the odds, know the risk, and make clearer decisions with modern precision.',
+    glowClass: 'hero-glow-green',
+  },
 ]
 
 export default function HeroCarousel() {
