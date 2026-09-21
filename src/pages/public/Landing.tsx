@@ -2,19 +2,41 @@ import { Link } from 'react-router-dom'
 import { TrendingUp, Scale, ShieldCheck, BrainCircuit, ArrowRight } from 'lucide-react'
 import HeroCarousel from '@/components/HeroCarousel'
 
-// Tailwind safelist: bg-signal-green/10 border-signal-green/25 text-signal-green bg-sky-500/10 border-sky-500/25 text-sky-500 bg-signal-yellow/10 border-signal-yellow/25 text-signal-yellow bg-violet-500/10 border-violet-500/25 text-violet-500
-
 const FEATURES = [
-  { icon: BrainCircuit, title: 'Model probability', desc: 'A transparent probability estimate built from structured historical and form data.', accent: 'signal-green' },
-  { icon: Scale, title: 'Model vs market', desc: 'See where the model and the market disagree, and by how much.', accent: 'sky-500' },
-  { icon: ShieldCheck, title: 'Confidence & risk', desc: 'Two separate signals — how sure the model is, and how uncertain the situation is.', accent: 'signal-yellow' },
-  { icon: TrendingUp, title: 'Historical performance', desc: 'Full prediction history, wins and losses included. Nothing hidden.', accent: 'violet-500' },
+  { 
+    icon: BrainCircuit, 
+    title: 'Model probability', 
+    desc: 'A transparent probability estimate built from structured historical and form data.', 
+    bgClass: 'bg-signal-green/10 border-signal-green/25', 
+    textClass: 'text-signal-green' 
+  },
+  { 
+    icon: Scale, 
+    title: 'Model vs market', 
+    desc: 'See where the model and the market disagree, and by how much.', 
+    bgClass: 'bg-sky-500/10 border-sky-500/25', 
+    textClass: 'text-sky-500' 
+  },
+  { 
+    icon: ShieldCheck, 
+    title: 'Confidence & risk', 
+    desc: 'Two separate signals — how sure the model is, and how uncertain the situation is.', 
+    bgClass: 'bg-signal-yellow/10 border-signal-yellow/25', 
+    textClass: 'text-signal-yellow' 
+  },
+  { 
+    icon: TrendingUp, 
+    title: 'Historical performance', 
+    desc: 'Full prediction history, wins and losses included. Nothing hidden.', 
+    bgClass: 'bg-violet-500/10 border-violet-500/25', 
+    textClass: 'text-violet-500' 
+  },
 ]
 
 export default function Landing() {
   return (
     <div className="bg-white text-navy-950">
-      {/* Intro text \u2014 just the tagline + description, white background, between navbar and hero */}
+      {/* Intro text — just the tagline + description, white background, between navbar and hero */}
       <section className="bg-white text-navy-950 px-4 pt-10 pb-8 fade-up">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-navy-950">
@@ -96,14 +118,14 @@ export default function Landing() {
           <p className="text-slate-500 text-sm">Four principles, applied to every signal OddsBora publishes.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {FEATURES.map(({ icon: Icon, title, desc, accent }, i) => (
+          {FEATURES.map(({ icon: Icon, title, desc, bgClass, textClass }, i) => (
             <div
               key={title}
               className="glass-card-light feature-card-in"
               style={{ animationDelay: `${i * 120}ms` }}
             >
-              <div className={`feature-icon-wrap w-10 h-10 rounded-lg bg-${accent}/10 border border-${accent}/25 flex items-center justify-center mb-3`}>
-                <Icon className={`text-${accent}`} size={20} />
+              <div className={`feature-icon-wrap w-10 h-10 rounded-lg border ${bgClass} flex items-center justify-center mb-3`}>
+                <Icon className={textClass} size={20} />
               </div>
               <h3 className="font-semibold mb-1 text-navy-950">{title}</h3>
               <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
