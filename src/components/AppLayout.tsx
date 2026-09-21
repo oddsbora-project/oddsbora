@@ -26,19 +26,19 @@ export default function AppLayout() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen flex flex-col bg-navy-950 pb-16 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-white pb-16 md:pb-0">
       <header className="sticky top-0 z-40 pt-3 px-3">
-        <div className="nav-pill header-logo-in">
+        <div className="nav-pill-light header-logo-in">
           <Link to="/dashboard" className="flex items-center">
             <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
+          <nav className="hidden md:flex items-center gap-6 text-sm text-navy-950/70">
             {DESKTOP_NAV.map((item) => (
-              <Link key={item.to} to={item.to} className="hover:text-white">{item.label}</Link>
+              <Link key={item.to} to={item.to} className="hover:text-navy-950 transition">{item.label}</Link>
             ))}
-            <Link to="/notifications" className="hover:text-white">Notifications</Link>
-            <button onClick={signOut} className="text-white/50 hover:text-white">Log out</button>
+            <Link to="/notifications" className="hover:text-navy-950 transition">Notifications</Link>
+            <button onClick={signOut} className="text-navy-950/50 hover:text-navy-950 transition">Log out</button>
           </nav>
 
           <div className="md:hidden">
@@ -51,21 +51,21 @@ export default function AppLayout() {
         <Outlet />
       </main>
 
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-navy-900 border-t border-white/10 flex justify-around py-2 z-40">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-black/10 flex justify-around py-2 z-40">
         {BOTTOM_TABS.map((item) => {
           const Icon = item.icon
           const active = location.pathname.startsWith(item.to)
           return (
             <Link
               key={item.to} to={item.to}
-              className={`flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 ${active ? 'text-signal-green' : 'text-white/50'}`}
+              className={`flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 ${active ? 'text-signal-green' : 'text-navy-950/50'} transition`}
             >
               <Icon size={20} />
               {item.label}
             </Link>
           )
         })}
-        <button onClick={() => setMenuOpen(true)} className="flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 text-white/50">
+        <button onClick={() => setMenuOpen(true)} className="flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 text-navy-950/50 transition">
           <MenuIcon size={20} />
           Menu
         </button>
