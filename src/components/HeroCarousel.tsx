@@ -55,21 +55,22 @@ export default function HeroCarousel() {
       {/* Image Carousel Container */}
       <div className={`relative rounded-2xl border border-black/10 bg-white overflow-hidden shadow-xl ${currentData.glowClass} transition-all duration-500`}>
         
-        {/* Slides Wrapper */}
-        <div className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden bg-navy-950">
+        {/* Slides Wrapper - Increased Height & object-contain to show full details */}
+        <div className="relative w-full h-[50vh] min-h-[350px] max-h-[600px] md:h-[60vh] md:min-h-[450px] md:max-h-[700px] overflow-hidden bg-navy-950 flex items-center justify-center">
           {SLIDES.map((slide, index) => (
             <img
               key={slide.image}
               src={slide.image}
               alt={slide.title}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
+              // Changed object-cover to object-contain so nothing is cropped
+              className={`absolute inset-0 w-full h-full object-contain p-2 sm:p-4 transition-all duration-700 ease-out ${
                 index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
               }`}
             />
           ))}
           
           {/* Subtle Gradient Overlay for Arrow Visibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
 
           {/* Navigation Arrows */}
           <button 
@@ -132,7 +133,7 @@ export default function HeroCarousel() {
             {currentData.description}
           </p>
 
-          {/* Call to Action (Optional but recommended) */}
+          {/* Call to Action */}
           <div className="mt-2">
             <a 
               href="/how-it-works" 
