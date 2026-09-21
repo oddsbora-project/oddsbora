@@ -4,6 +4,7 @@ import { Home, ListChecks, Radio, User, Menu as MenuIcon } from 'lucide-react'
 import { useAuth } from '@/lib/auth-context'
 import AppMobileMenu from './AppMobileMenu'
 import KenyaFlagBadge from './KenyaFlagBadge'
+import OddsBoraLogo from './OddsBoraLogo' // Import the new component
 
 const BOTTOM_TABS = [
   { to: '/dashboard', label: 'Dashboard', icon: Home },
@@ -30,7 +31,8 @@ export default function AppLayout() {
       <header className="sticky top-0 z-40 pt-3 px-3">
         <div className="nav-pill-light header-logo-in">
           <Link to="/dashboard" className="flex items-center">
-            <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
+            {/* New borderless logo */}
+            <OddsBoraLogo variant="light" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-navy-950/70">
