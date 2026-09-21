@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { TrendingUp, Scale, ShieldCheck, BrainCircuit, ArrowRight } from 'lucide-react'
 import HeroCarousel from '@/components/HeroCarousel'
@@ -9,7 +10,7 @@ const FEATURES = [
     desc: 'A transparent probability estimate built from structured historical and form data.', 
     iconBg: 'bg-signal-green/10 border-signal-green/20',
     iconText: 'text-signal-green',
-    glowBg: 'from-signal-green/10',
+    glowBg: 'from-signal-green/15 to-transparent',
     lineBg: 'bg-signal-green'
   },
   { 
@@ -18,7 +19,7 @@ const FEATURES = [
     desc: 'See where the model and the market disagree, and by how much.', 
     iconBg: 'bg-sky-500/10 border-sky-500/20',
     iconText: 'text-sky-500',
-    glowBg: 'from-sky-500/10',
+    glowBg: 'from-sky-500/15 to-transparent',
     lineBg: 'bg-sky-500'
   },
   { 
@@ -27,7 +28,7 @@ const FEATURES = [
     desc: 'Two separate signals — how sure the model is, and how uncertain the situation is.', 
     iconBg: 'bg-signal-yellow/10 border-signal-yellow/20',
     iconText: 'text-signal-yellow',
-    glowBg: 'from-signal-yellow/10',
+    glowBg: 'from-signal-yellow/15 to-transparent',
     lineBg: 'bg-signal-yellow'
   },
   { 
@@ -36,12 +37,26 @@ const FEATURES = [
     desc: 'Full prediction history, wins and losses included. Nothing hidden.', 
     iconBg: 'bg-violet-500/10 border-violet-500/20',
     iconText: 'text-violet-500',
-    glowBg: 'from-violet-500/10',
+    glowBg: 'from-violet-500/15 to-transparent',
     lineBg: 'bg-violet-500'
   },
 ]
 
 export default function Landing() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+
+  // Automatic cycling logic: moves to the next card every 3.5 seconds
+  useEffect(() => {
+    if (isHovered) return // Pause auto-play if user is interacting
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % FEATURES.length)
+    }, 3500)
+
+    return () => clearInterval(interval)
+  }, [isHovered])
+
   return (
     <div className="bg-white text-navy-950">
       {/* Intro text */}
@@ -120,7 +135,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Modernized Feature Cards Section */}
+      {/* Modernized Feature Cards Section with Automatic Showcasing */}
       <section className="max-w-5xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-bold mb-3 font-display text-navy-950">Built for analytical clarity</h2>
@@ -128,32 +143,49 @@ export default function Landing() {
         </div>
         
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {FEATURES.map(({ icon: Icon, title, desc, iconBg, iconText, glowBg, lineBg }, i) => (
-            <div
-              key={title}
-              className="group relative flex flex-col p-6 rounded-2xl bg-white border border-black/5 shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] overflow-hidden"
-              style={{ animationDelay: `${i * 120}ms` }}
-            >
-              {/* Spotlight Hover Overlay */}
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${glowBg} to-transparent pointer-events-none`} />
-              
-              {/* Icon Container with 3D Tilt */}
-              <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center mb-5 border ${iconBg} transition-transform duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) group-hover:scale-110 group-hover:-rotate-6`}>
-                <Icon className={`${iconText}`} size={22} strokeWidth={2.5} />
-              </div>
-              
-              {/* Text Content */}
-              <h3 className="relative z-10 text-lg font-bold text-navy-950 mb-2 tracking-tight group-hover:text-navy-900 transition-colors duration-300">
-                {title}
-              </h3>
-              <p className="relative z-10 text-slate-500 leading-relaxed text-sm group-hover:text-slate-600 transition-colors duration-300">
-                {desc}
-              </p>
+          {FEATURES.map(({ icon: Icon, title, desc, iconBg, iconText, glowBg, lineBg }, i) => {
+            const isActive = i === activeIndex
 
-              {/* Expanding Bottom Accent Line */}
-              <div className={`absolute bottom-0 left-0 h-[3px] w-0 transition-all duration-500 ease-out group-hover:w-full ${lineBg}`} />
-            </div>
-          ))}
+            return (
+              <div
+                key={title}
+                // Mouse events to pause auto-play and let user explore manually
+                onMouseEnter={() => {
+                  setActiveIndex(i)
+                  setIsHovered(true)
+                }}
+                onMouseLeave={() => setIsHovered(false)}
+                className={`group relative flex flex-col p-6 rounded-2xl bg-white border border-black/5 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden
+                  ${isActive 
+                    ? '-translate-y-2 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] border-black/10' 
+                    : 'translate-y-0 shadow-sm hover:shadow-md'
+                  }
+                `}
+              >
+                {/* Spotlight Hover Overlay (Activates automatically) */}
+                <div className={`absolute inset-0 transition-opacity duration-700 bg-gradient-to-br ${glowBg} pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                
+                {/* Icon Container with 3D Spring Animation */}
+                <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center mb-5 border transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+                  ${iconBg} 
+                  ${isActive ? 'scale-110 -rotate-6' : 'scale-100 rotate-0'}
+                `}>
+                  <Icon className={`${iconText}`} size={22} strokeWidth={2.5} />
+                </div>
+                
+                {/* Text Content */}
+                <h3 className={`relative z-10 text-lg font-bold mb-2 tracking-tight transition-colors duration-500 ${isActive ? 'text-navy-900' : 'text-navy-950'}`}>
+                  {title}
+                </h3>
+                <p className={`relative z-10 leading-relaxed text-sm transition-colors duration-500 ${isActive ? 'text-slate-600' : 'text-slate-500'}`}>
+                  {desc}
+                </p>
+
+                {/* Expanding Bottom Accent Line (Activates automatically) */}
+                <div className={`absolute bottom-0 left-0 h-[3px] transition-all duration-700 ease-out ${lineBg} ${isActive ? 'w-full' : 'w-0'}`} />
+              </div>
+            )
+          })}
         </div>
       </section>
 
