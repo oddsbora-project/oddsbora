@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import MobileMenu from './MobileMenu'
 import PublicBottomNav from './PublicBottomNav'
 import KenyaFlagBadge from './KenyaFlagBadge'
+import OddsBoraLogo from './OddsBoraLogo' // Import the new component
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -12,8 +13,8 @@ export default function Layout() {
       <header className="sticky top-0 z-40 pt-3 px-3">
         <div className="nav-pill-light header-logo-in">
           <Link to="/" className="flex items-center">
-            {/* Note: Ensure your logo is dark or has a transparent background for light mode */}
-            <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
+            {/* New borderless logo */}
+            <OddsBoraLogo variant="light" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-navy-950/70">
