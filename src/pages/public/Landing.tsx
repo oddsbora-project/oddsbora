@@ -7,36 +7,44 @@ const FEATURES = [
     icon: BrainCircuit, 
     title: 'Model probability', 
     desc: 'A transparent probability estimate built from structured historical and form data.', 
-    bgClass: 'bg-signal-green/10 border-signal-green/25', 
-    textClass: 'text-signal-green' 
+    iconBg: 'bg-signal-green/10 border-signal-green/20',
+    iconText: 'text-signal-green',
+    glowBg: 'from-signal-green/10',
+    lineBg: 'bg-signal-green'
   },
   { 
     icon: Scale, 
     title: 'Model vs market', 
     desc: 'See where the model and the market disagree, and by how much.', 
-    bgClass: 'bg-sky-500/10 border-sky-500/25', 
-    textClass: 'text-sky-500' 
+    iconBg: 'bg-sky-500/10 border-sky-500/20',
+    iconText: 'text-sky-500',
+    glowBg: 'from-sky-500/10',
+    lineBg: 'bg-sky-500'
   },
   { 
     icon: ShieldCheck, 
     title: 'Confidence & risk', 
     desc: 'Two separate signals — how sure the model is, and how uncertain the situation is.', 
-    bgClass: 'bg-signal-yellow/10 border-signal-yellow/25', 
-    textClass: 'text-signal-yellow' 
+    iconBg: 'bg-signal-yellow/10 border-signal-yellow/20',
+    iconText: 'text-signal-yellow',
+    glowBg: 'from-signal-yellow/10',
+    lineBg: 'bg-signal-yellow'
   },
   { 
     icon: TrendingUp, 
     title: 'Historical performance', 
     desc: 'Full prediction history, wins and losses included. Nothing hidden.', 
-    bgClass: 'bg-violet-500/10 border-violet-500/25', 
-    textClass: 'text-violet-500' 
+    iconBg: 'bg-violet-500/10 border-violet-500/20',
+    iconText: 'text-violet-500',
+    glowBg: 'from-violet-500/10',
+    lineBg: 'bg-violet-500'
   },
 ]
 
 export default function Landing() {
   return (
     <div className="bg-white text-navy-950">
-      {/* Intro text — just the tagline + description, white background, between navbar and hero */}
+      {/* Intro text */}
       <section className="bg-white text-navy-950 px-4 pt-10 pb-8 fade-up">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-navy-950">
@@ -112,23 +120,38 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 py-10">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Built for analytical clarity</h2>
-          <p className="text-slate-500 text-sm">Four principles, applied to every signal OddsBora publishes.</p>
+      {/* Modernized Feature Cards Section */}
+      <section className="max-w-5xl mx-auto px-4 py-16">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 font-display text-navy-950">Built for analytical clarity</h2>
+          <p className="text-slate-500 text-sm max-w-md mx-auto">Four principles, applied to every signal OddsBora publishes.</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {FEATURES.map(({ icon: Icon, title, desc, bgClass, textClass }, i) => (
+        
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {FEATURES.map(({ icon: Icon, title, desc, iconBg, iconText, glowBg, lineBg }, i) => (
             <div
               key={title}
-              className="glass-card-light feature-card-in"
+              className="group relative flex flex-col p-6 rounded-2xl bg-white border border-black/5 shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] overflow-hidden"
               style={{ animationDelay: `${i * 120}ms` }}
             >
-              <div className={`feature-icon-wrap w-10 h-10 rounded-lg border ${bgClass} flex items-center justify-center mb-3`}>
-                <Icon className={textClass} size={20} />
+              {/* Spotlight Hover Overlay */}
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${glowBg} to-transparent pointer-events-none`} />
+              
+              {/* Icon Container with 3D Tilt */}
+              <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center mb-5 border ${iconBg} transition-transform duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) group-hover:scale-110 group-hover:-rotate-6`}>
+                <Icon className={`${iconText}`} size={22} strokeWidth={2.5} />
               </div>
-              <h3 className="font-semibold mb-1 text-navy-950">{title}</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+              
+              {/* Text Content */}
+              <h3 className="relative z-10 text-lg font-bold text-navy-950 mb-2 tracking-tight group-hover:text-navy-900 transition-colors duration-300">
+                {title}
+              </h3>
+              <p className="relative z-10 text-slate-500 leading-relaxed text-sm group-hover:text-slate-600 transition-colors duration-300">
+                {desc}
+              </p>
+
+              {/* Expanding Bottom Accent Line */}
+              <div className={`absolute bottom-0 left-0 h-[3px] w-0 transition-all duration-500 ease-out group-hover:w-full ${lineBg}`} />
             </div>
           ))}
         </div>
