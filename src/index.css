@@ -54,9 +54,14 @@
     @apply bg-black/[0.025] border border-black/10 rounded-xl p-4;
   }
 
-  /* Single floating pill navbar \u2014 the only header element on any page */
+  /* Single floating pill navbar */
   .nav-pill {
     @apply max-w-2xl mx-auto rounded-full bg-navy-900/90 backdrop-blur-xl border border-white/10 shadow-lg px-4 h-14 flex items-center justify-between;
+  }
+
+  /* NEW: Light floating pill navbar for white backgrounds */
+  .nav-pill-light {
+    @apply max-w-2xl mx-auto rounded-full bg-white/90 backdrop-blur-xl border border-black/10 shadow-sm px-4 h-14 flex items-center justify-between;
   }
 
   .menu-backdrop {
