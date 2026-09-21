@@ -55,15 +55,19 @@ export default function HeroCarousel() {
       {/* Image Carousel Container */}
       <div className={`relative rounded-2xl border border-black/10 bg-white overflow-hidden shadow-xl ${currentData.glowClass} transition-all duration-500`}>
         
-        {/* Slides Wrapper - Increased Height & object-contain to show full details */}
-        <div className="relative w-full h-[50vh] min-h-[350px] max-h-[600px] md:h-[60vh] md:min-h-[450px] md:max-h-[700px] overflow-hidden bg-navy-950 flex items-center justify-center">
+        {/* Slides Wrapper - Balanced Height & Premium Shadowbox Background */}
+        <div className="relative w-full h-[40vh] min-h-[300px] max-h-[450px] md:h-[50vh] md:min-h-[400px] md:max-h-[550px] overflow-hidden bg-navy-950 flex items-center justify-center">
+          
+          {/* Subtle radial gradient to make the letterbox space look intentional */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent pointer-events-none" />
+
           {SLIDES.map((slide, index) => (
             <img
               key={slide.image}
               src={slide.image}
               alt={slide.title}
-              // Changed object-cover to object-contain so nothing is cropped
-              className={`absolute inset-0 w-full h-full object-contain p-2 sm:p-4 transition-all duration-700 ease-out ${
+              // Removed padding to maximize image size within the container
+              className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-out ${
                 index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
               }`}
             />
