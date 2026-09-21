@@ -8,19 +8,20 @@ export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen flex flex-col bg-navy-950 pb-16 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-white pb-16 md:pb-0">
       <header className="sticky top-0 z-40 pt-3 px-3">
-        <div className="nav-pill header-logo-in">
+        <div className="nav-pill-light header-logo-in">
           <Link to="/" className="flex items-center">
+            {/* Note: Ensure your logo is dark or has a transparent background for light mode */}
             <img src="/oddsbora-logo.png" alt="OddsBora" className="h-9 w-auto object-contain" />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
-            <Link to="/features" className="hover:text-white">Features</Link>
-            <Link to="/how-it-works" className="hover:text-white">How It Works</Link>
-            <Link to="/markets" className="hover:text-white">Markets</Link>
-            <Link to="/pricing" className="hover:text-white">Pricing</Link>
-            <Link to="/login" className="hover:text-white">Log in</Link>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-navy-950/70">
+            <Link to="/features" className="hover:text-navy-950 transition">Features</Link>
+            <Link to="/how-it-works" className="hover:text-navy-950 transition">How It Works</Link>
+            <Link to="/markets" className="hover:text-navy-950 transition">Markets</Link>
+            <Link to="/pricing" className="hover:text-navy-950 transition">Pricing</Link>
+            <Link to="/login" className="hover:text-navy-950 transition">Log in</Link>
             <Link to="/register" className="btn-primary text-sm py-2 px-4">Get Started</Link>
           </nav>
 
@@ -34,9 +35,9 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="hidden md:block border-t border-white/10 text-xs text-white/40 text-center py-6 px-4">
+      <footer className="hidden md:block border-t border-black/10 text-xs text-navy-950/50 text-center py-6 px-4">
         OddsBora is a sports analytics platform, not a bookmaker. It does not guarantee outcomes or profits.
-        18+ only. <Link to="/responsible-use" className="underline">Responsible use</Link>
+        18+ only. <Link to="/responsible-use" className="underline hover:text-navy-950 transition">Responsible use</Link>
       </footer>
 
       <PublicBottomNav onMenuClick={() => setMenuOpen(true)} />
