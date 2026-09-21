@@ -1,5 +1,12 @@
 const SLIDES = [
   {
+    // The new 3D Logo slide is now FIRST
+    image: '/oddsbora-logo.png', 
+    caption: 'The OddsBora Vision',
+    detail: 'AI-powered sports intelligence. Read the odds, know the risk, and make clearer decisions with modern precision.',
+    glowClass: 'hero-glow-green',
+  },
+  {
     image: '/hero/oddsbora-hero-1.jpg',
     caption: 'Model Probability',
     detail: 'A transparent estimate built from real historical and form data — across football, netball, boxing, basketball, and more.',
@@ -10,13 +17,6 @@ const SLIDES = [
     caption: 'Sports Intelligence for Africa',
     detail: 'Clearer probabilities, honest risk, for the leagues you follow.',
     glowClass: 'hero-glow-amber',
-  },
-  {
-    // The new 3D Logo slide
-    image: '/oddsbora-logo.png', 
-    caption: 'The OddsBora Vision',
-    detail: 'AI-powered sports intelligence. Read the odds, know the risk, and make clearer decisions with modern precision.',
-    glowClass: 'hero-glow-green',
   },
 ]
 
