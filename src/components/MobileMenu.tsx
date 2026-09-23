@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { X, Home, Sparkles, Compass, BarChart3, Tag, Info, ShieldCheck, LogIn, UserPlus, ChevronRight } from 'lucide-react'
+import OddsBoraLogo from './OddsBoraLogo' // Import the new logo component
 
 interface MobileMenuProps {
   open: boolean
@@ -26,7 +27,9 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
         <div className="menu-blob bg-signal-green/15 -bottom-10 -right-10" />
 
         <div className="flex items-center justify-between px-5 h-16 border-b border-black/10 relative">
-          <img src="/oddsbora-logo.png" alt="OddsBora" className="h-8 w-auto object-contain" />
+          {/* Replaced the old img tag with the modern, borderless logo */}
+          <OddsBoraLogo variant="light" />
+          
           <button onClick={onClose} aria-label="Close menu" className="text-navy-950/60 hover:text-navy-950 p-1">
             <X size={22} />
           </button>
