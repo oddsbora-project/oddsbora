@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Home, BarChart3, Tag, Menu as MenuIcon, User } from 'lucide-react'
+import { Home, BarChart3, Newspaper, Menu as MenuIcon, User } from 'lucide-react'
 
 interface PublicBottomNavProps {
   onMenuClick: () => void
@@ -8,7 +8,7 @@ interface PublicBottomNavProps {
 const TABS = [
   { to: '/', label: 'Home', icon: Home },
   { to: '/markets', label: 'Markets', icon: BarChart3 },
-  { to: '/pricing', label: 'Pricing', icon: Tag },
+  { to: '/news', label: 'News', icon: Newspaper }, // Changed from Pricing to News
 ]
 
 export default function PublicBottomNav({ onMenuClick }: PublicBottomNavProps) {
@@ -22,19 +22,28 @@ export default function PublicBottomNav({ onMenuClick }: PublicBottomNavProps) {
         return (
           <Link
             key={tab.to} to={tab.to}
-            className={`flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 ${active ? 'text-signal-green' : 'text-white/50'}`}
+            className={`flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 transition-colors ${active ? 'text-signal-green' : 'text-white/50 hover:text-white/80'}`}
           >
             <Icon size={20} />
             {tab.label}
           </Link>
         )
       })}
-      {/* Account is one equal-weight tab among others \u2014 not a forced flow */}
-      <Link to="/login" className="flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 text-white/50">
+      
+      {/* Account tab */}
+      <Link 
+        to="/login" 
+        className={`flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 transition-colors ${location.pathname === '/login' ? 'text-signal-green' : 'text-white/50 hover:text-white/80'}`}
+      >
         <User size={20} />
         Account
       </Link>
-      <button onClick={onMenuClick} className="flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 text-white/50">
+      
+      {/* Menu button */}
+      <button 
+        onClick={onMenuClick} 
+        className="flex flex-col items-center gap-0.5 text-[11px] px-3 py-1 text-white/50 hover:text-white/80 transition-colors"
+      >
         <MenuIcon size={20} />
         Menu
       </button>
