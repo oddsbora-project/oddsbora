@@ -10,7 +10,8 @@ import Landing from '@/pages/public/Landing'
 import Features from '@/pages/public/Features'
 import HowItWorks from '@/pages/public/HowItWorks'
 import Markets from '@/pages/public/Markets'
-import News from '@/pages/public/News' // Updated from Pricing
+import News from '@/pages/public/News'
+import NewsDetail from '@/pages/public/NewsDetail' // NEW: Import the detail page
 import About from '@/pages/public/About'
 import ResponsibleUse from '@/pages/public/ResponsibleUse'
 import Login from '@/pages/public/Login'
@@ -38,18 +39,21 @@ export default function App() {
   return (
     <AuthProvider>
       <Routes>
+        {/* Public Routes */}
         <Route element={<Layout />}>
           <Route index element={<Landing />} />
           <Route path="features" element={<Features />} />
           <Route path="how-it-works" element={<HowItWorks />} />
           <Route path="markets" element={<Markets />} />
-          <Route path="news" element={<News />} /> {/* Updated from /pricing */}
+          <Route path="news" element={<News />} />
+          <Route path="news/:id" element={<NewsDetail />} /> {/* NEW: Route for individual news/video */}
           <Route path="about" element={<About />} />
           <Route path="responsible-use" element={<ResponsibleUse />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
 
+        {/* Protected App Routes */}
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
@@ -64,6 +68,7 @@ export default function App() {
             <Route path="subscription" element={<Subscription />} />
           </Route>
 
+          {/* Protected Admin Routes */}
           <Route element={<AdminRoute />}>
             <Route element={<AdminLayout />}>
               <Route path="admin" element={<AdminOverview />} />
