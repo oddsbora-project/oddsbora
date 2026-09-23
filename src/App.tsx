@@ -11,7 +11,7 @@ import Features from '@/pages/public/Features'
 import HowItWorks from '@/pages/public/HowItWorks'
 import Markets from '@/pages/public/Markets'
 import News from '@/pages/public/News'
-import NewsDetail from '@/pages/public/NewsDetail' // NEW: Import the detail page
+import NewsDetail from '@/pages/public/NewsDetail'
 import About from '@/pages/public/About'
 import ResponsibleUse from '@/pages/public/ResponsibleUse'
 import Login from '@/pages/public/Login'
@@ -46,7 +46,7 @@ export default function App() {
           <Route path="how-it-works" element={<HowItWorks />} />
           <Route path="markets" element={<Markets />} />
           <Route path="news" element={<News />} />
-          <Route path="news/:id" element={<NewsDetail />} /> {/* NEW: Route for individual news/video */}
+          <Route path="news/:id" element={<NewsDetail />} />
           <Route path="about" element={<About />} />
           <Route path="responsible-use" element={<ResponsibleUse />} />
           <Route path="login" element={<Login />} />
