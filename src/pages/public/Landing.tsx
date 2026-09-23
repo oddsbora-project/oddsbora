@@ -46,28 +46,25 @@ export default function Landing() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
 
-  // Automatic cycling logic: moves to the next card every 3.5 seconds
   useEffect(() => {
-    if (isHovered) return // Pause auto-play if user is interacting
-
+    if (isHovered) return 
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % FEATURES.length)
     }, 3500)
-
     return () => clearInterval(interval)
   }, [isHovered])
 
   return (
     <div className="bg-white text-navy-950">
+      
       {/* Intro text */}
-      <section className="bg-white text-navy-950 px-4 pt-10 pb-8 fade-up">
+      <section className="bg-white text-navy-950 px-4 pt-10 pb-4 fade-up">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight mb-4 text-navy-950">
             Clearer Insights.
             <br />
             <span className="text-signal-green">One Match At A Time.</span>
           </h1>
-
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             OddsBora is an AI-powered sports intelligence platform delivering transparent probability
             models, honest risk assessment, and model-vs-market analysis across the sports Kenya
@@ -77,7 +74,38 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 pt-6 pb-2">
+      {/* NEW: Standalone 3D Logo & Brand Vision Section */}
+      <section className="max-w-4xl mx-auto px-4 pt-10 pb-12 fade-up">
+        <div className="flex flex-col items-center text-center">
+          
+          {/* The 3D Logo Showcase */}
+          <div className="relative w-full max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-black/10 bg-navy-950 mb-8 group">
+            <img
+              src="/oddsbora-logo.png"
+              alt="OddsBora 3D Logo"
+              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+          </div>
+          
+          {/* Brand Description */}
+          <span className="text-signal-green text-xs font-mono uppercase tracking-widest bg-signal-green/10 px-3 py-1 rounded-full border border-signal-green/20 mb-4">
+            The OddsBora Vision
+          </span>
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-navy-950 leading-tight mb-4">
+            AI-Powered Sports Intelligence
+          </h2>
+          <p className="text-lg text-slate-600 font-medium mb-4">
+            Read the odds. Know the risk.
+          </p>
+          <p className="text-slate-500 leading-relaxed text-sm sm:text-base max-w-2xl mx-auto">
+            OddsBora combines cutting-edge AI with deep sports data to deliver transparent probabilities, honest risk assessments, and clear insights. We strip away the noise to give you the purest probability signals based on real-world performance.
+          </p>
+        </div>
+      </section>
+
+      {/* The Carousel now only contains the two hero slides */}
+      <section className="max-w-5xl mx-auto px-4 pb-2">
         <HeroCarousel />
       </section>
 
@@ -135,7 +163,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Modernized Feature Cards Section with Automatic Showcasing */}
+      {/* Modernized Feature Cards Section */}
       <section className="max-w-5xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-bold mb-3 font-display text-navy-950">Built for analytical clarity</h2>
@@ -145,11 +173,9 @@ export default function Landing() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {FEATURES.map(({ icon: Icon, title, desc, iconBg, iconText, glowBg, lineBg }, i) => {
             const isActive = i === activeIndex
-
             return (
               <div
                 key={title}
-                // Mouse events to pause auto-play and let user explore manually
                 onMouseEnter={() => {
                   setActiveIndex(i)
                   setIsHovered(true)
@@ -162,10 +188,8 @@ export default function Landing() {
                   }
                 `}
               >
-                {/* Spotlight Hover Overlay (Activates automatically) */}
                 <div className={`absolute inset-0 transition-opacity duration-700 bg-gradient-to-br ${glowBg} pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'}`} />
                 
-                {/* Icon Container with 3D Spring Animation */}
                 <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center mb-5 border transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]
                   ${iconBg} 
                   ${isActive ? 'scale-110 -rotate-6' : 'scale-100 rotate-0'}
@@ -173,7 +197,6 @@ export default function Landing() {
                   <Icon className={`${iconText}`} size={22} strokeWidth={2.5} />
                 </div>
                 
-                {/* Text Content */}
                 <h3 className={`relative z-10 text-lg font-bold mb-2 tracking-tight transition-colors duration-500 ${isActive ? 'text-navy-900' : 'text-navy-950'}`}>
                   {title}
                 </h3>
@@ -181,7 +204,6 @@ export default function Landing() {
                   {desc}
                 </p>
 
-                {/* Expanding Bottom Accent Line (Activates automatically) */}
                 <div className={`absolute bottom-0 left-0 h-[3px] transition-all duration-700 ease-out ${lineBg} ${isActive ? 'w-full' : 'w-0'}`} />
               </div>
             )
