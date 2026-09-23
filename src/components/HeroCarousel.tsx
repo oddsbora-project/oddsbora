@@ -1,15 +1,8 @@
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+// The 3D logo slide has been removed from here
 const SLIDES = [
-  {
-    image: '/oddsbora-logo.png',
-    tag: 'The OddsBora Vision',
-    title: 'AI-Powered Sports Intelligence',
-    subtitle: 'Read the odds. Know the risk.',
-    description: 'OddsBora combines cutting-edge AI with deep sports data to deliver transparent probabilities, honest risk assessments, and clear insights. We strip away the noise to give you the purest probability signals based on real-world performance.',
-    glowClass: 'hero-glow-green',
-  },
   {
     image: '/hero/oddsbora-hero-1.jpg',
     tag: 'Model Probability',
@@ -31,7 +24,6 @@ const SLIDES = [
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  // Auto-advance the carousel every 8 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % SLIDES.length)
@@ -55,10 +47,9 @@ export default function HeroCarousel() {
       {/* Image Carousel Container */}
       <div className={`relative rounded-2xl border border-black/10 bg-white overflow-hidden shadow-xl ${currentData.glowClass} transition-all duration-500`}>
         
-        {/* Slides Wrapper - Balanced Height & Premium Shadowbox Background */}
+        {/* Slides Wrapper */}
         <div className="relative w-full h-[40vh] min-h-[300px] max-h-[450px] md:h-[50vh] md:min-h-[400px] md:max-h-[550px] overflow-hidden bg-navy-950 flex items-center justify-center">
           
-          {/* Subtle radial gradient to make the letterbox space look intentional */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent pointer-events-none" />
 
           {SLIDES.map((slide, index) => (
@@ -66,14 +57,12 @@ export default function HeroCarousel() {
               key={slide.image}
               src={slide.image}
               alt={slide.title}
-              // Removed padding to maximize image size within the container
               className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-out ${
                 index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
               }`}
             />
           ))}
           
-          {/* Subtle Gradient Overlay for Arrow Visibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
 
           {/* Navigation Arrows */}
@@ -112,7 +101,6 @@ export default function HeroCarousel() {
       <div className="bg-white rounded-2xl border border-black/10 p-6 sm:p-8 shadow-sm">
         <div className="flex flex-col gap-4">
           
-          {/* Tag & Subtitle */}
           <div className="flex items-center gap-3">
             <span className="text-signal-green text-xs font-mono uppercase tracking-widest bg-signal-green/10 px-3 py-1 rounded-full border border-signal-green/20">
               {currentData.tag}
@@ -122,22 +110,18 @@ export default function HeroCarousel() {
             </span>
           </div>
 
-          {/* Title */}
           <h3 className="text-2xl sm:text-3xl font-display font-bold text-navy-950 leading-tight">
             {currentData.title}
           </h3>
 
-          {/* Subtitle */}
           <p className="text-lg text-slate-600 font-medium">
             {currentData.subtitle}
           </p>
 
-          {/* Detailed Description */}
           <p className="text-slate-500 leading-relaxed text-sm sm:text-base max-w-3xl">
             {currentData.description}
           </p>
 
-          {/* Call to Action */}
           <div className="mt-2">
             <a 
               href="/how-it-works" 
