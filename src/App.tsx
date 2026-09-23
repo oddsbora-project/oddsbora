@@ -10,7 +10,7 @@ import Landing from '@/pages/public/Landing'
 import Features from '@/pages/public/Features'
 import HowItWorks from '@/pages/public/HowItWorks'
 import Markets from '@/pages/public/Markets'
-import Pricing from '@/pages/public/Pricing'
+import News from '@/pages/public/News' // Updated from Pricing
 import About from '@/pages/public/About'
 import ResponsibleUse from '@/pages/public/ResponsibleUse'
 import Login from '@/pages/public/Login'
@@ -43,7 +43,7 @@ export default function App() {
           <Route path="features" element={<Features />} />
           <Route path="how-it-works" element={<HowItWorks />} />
           <Route path="markets" element={<Markets />} />
-          <Route path="pricing" element={<Pricing />} />
+          <Route path="news" element={<News />} /> {/* Updated from /pricing */}
           <Route path="about" element={<About />} />
           <Route path="responsible-use" element={<ResponsibleUse />} />
           <Route path="login" element={<Login />} />
