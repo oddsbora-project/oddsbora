@@ -10,7 +10,7 @@ const MOCK_NEWS = [
     league: 'Premier League',
     date: '19 September 2026',
     image: '/hero/oddsbora-hero-1.jpg',
-    videoUrl: 'https://youtu.be/_f5-6jdNP58?si=dcU2wITrdFgxDi-O', // Added YouTube link
+    videoUrl: 'https://youtu.be/YV9GtBtNNpw?si=FEj0W1Zobjc29HEH', // <--- UPDATED LINK
     content: `
       Brighton & Hove Albion delivered a statement performance at the Amex Stadium on Saturday, dismantling defending Premier League champions Arsenal 3-0 in a match that will be remembered for its intensity and clinical finishing.
 
