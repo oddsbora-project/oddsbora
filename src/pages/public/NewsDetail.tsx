@@ -1,11 +1,10 @@
 import { useParams } from 'react-router-dom'
 import YouTubePlayer from '@/components/YouTubePlayer'
 
-// Mock data — replace with Supabase fetch later
 const MOCK_ARTICLES: Record<string, any> = {
   '1': {
     title: 'Brighton 3-0 Arsenal: Seagulls Stun Gunners in Premier League Showdown',
-    videoUrl: 'https://youtu.be/_f5-6jdNP58?si=dcU2wITrdFgxDi-O',
+    videoUrl: 'https://youtu.be/YV9GtBtNNpw?si=FEj0W1Zobjc29HEH', // <--- UPDATED LINK
     content: `
       Brighton & Hove Albion delivered a statement performance at the Amex Stadium on Saturday, dismantling defending Premier League champions Arsenal 3-0 in a match that will be remembered for its intensity and clinical finishing.
 
