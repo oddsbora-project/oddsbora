@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { TrendingUp, Scale, ShieldCheck, BrainCircuit, ArrowRight } from 'lucide-react'
 import HeroCarousel from '@/components/HeroCarousel'
+import LiveIntelligencePreview from '@/components/LiveIntelligencePreview' // Import the new component
 
 const FEATURES = [
   { 
@@ -74,11 +75,10 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* NEW: Standalone 3D Logo & Brand Vision Section */}
+      {/* Standalone 3D Logo & Brand Vision Section */}
       <section className="max-w-4xl mx-auto px-4 pt-10 pb-12 fade-up">
         <div className="flex flex-col items-center text-center">
           
-          {/* The 3D Logo Showcase */}
           <div className="relative w-full max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-black/10 bg-navy-950 mb-8 group">
             <img
               src="/oddsbora-logo.png"
@@ -88,7 +88,6 @@ export default function Landing() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
           </div>
           
-          {/* Brand Description */}
           <span className="text-signal-green text-xs font-mono uppercase tracking-widest bg-signal-green/10 px-3 py-1 rounded-full border border-signal-green/20 mb-4">
             The OddsBora Vision
           </span>
@@ -104,7 +103,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* The Carousel now only contains the two hero slides */}
       <section className="max-w-5xl mx-auto px-4 pb-2">
         <HeroCarousel />
       </section>
@@ -133,35 +131,8 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 py-6">
-        <div className="glass-panel-light p-5 sm:p-7">
-          <div className="flex items-center justify-between mb-5 flex-wrap gap-2">
-            <h2 className="font-semibold text-lg">Live Intelligence Preview</h2>
-            <span className="badge-warning">Demo data</span>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4 font-mono text-sm">
-            <div className="glass-stat-light">
-              <p className="text-slate-500 mb-1">Model probability</p>
-              <p className="text-3xl text-signal-green font-bold">62%</p>
-            </div>
-            <div className="glass-stat-light">
-              <p className="text-slate-500 mb-1">Market-implied probability</p>
-              <p className="text-3xl font-bold">54%</p>
-            </div>
-            <div className="glass-stat-light">
-              <p className="text-slate-500 mb-1">Estimated edge</p>
-              <p className="text-3xl text-signal-green font-bold">+8 pts</p>
-            </div>
-            <div className="glass-stat-light">
-              <p className="text-slate-500 mb-1">Confidence · Risk</p>
-              <p className="text-xl font-bold">High · Moderate</p>
-            </div>
-          </div>
-          <p className="text-slate-400 text-xs mt-5">
-            An estimated edge reflects a model-vs-market probability difference. It is not a guarantee of outcome.
-          </p>
-        </div>
-      </section>
+      {/* NEW: Replaced the old static section with the LiveIntelligencePreview component */}
+      <LiveIntelligencePreview />
 
       {/* Modernized Feature Cards Section */}
       <section className="max-w-5xl mx-auto px-4 py-16">
