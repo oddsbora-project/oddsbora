@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { X, Home, Sparkles, Compass, BarChart3, Tag, Info, ShieldCheck, LogIn, UserPlus, ChevronRight } from 'lucide-react'
+import { X, Home, Sparkles, Compass, BarChart3, Newspaper, Info, ShieldCheck, LogIn, UserPlus, ChevronRight } from 'lucide-react'
 import OddsBoraLogo from './OddsBoraLogo' // Import the new logo component
 
 interface MobileMenuProps {
@@ -12,7 +12,7 @@ const MENU_ITEMS = [
   { to: '/features', label: 'Features', icon: Sparkles, bg: 'bg-sky-500/10', fg: 'text-sky-500' },
   { to: '/how-it-works', label: 'How It Works', icon: Compass, bg: 'bg-signal-yellow/10', fg: 'text-signal-yellow' },
   { to: '/markets', label: 'Markets', icon: BarChart3, bg: 'bg-violet-500/10', fg: 'text-violet-500' },
-  { to: '/pricing', label: 'Pricing', icon: Tag, bg: 'bg-signal-green/10', fg: 'text-signal-green' },
+  { to: '/news', label: 'Sports News', icon: Newspaper, bg: 'bg-sky-500/10', fg: 'text-sky-500' }, // Updated from Pricing
   { to: '/about', label: 'About', icon: Info, bg: 'bg-sky-500/10', fg: 'text-sky-500' },
   { to: '/responsible-use', label: 'Responsible Use', icon: ShieldCheck, bg: 'bg-signal-yellow/10', fg: 'text-signal-yellow' },
 ]
@@ -27,7 +27,6 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
         <div className="menu-blob bg-signal-green/15 -bottom-10 -right-10" />
 
         <div className="flex items-center justify-between px-5 h-16 border-b border-black/10 relative">
-          {/* Replaced the old img tag with the modern, borderless logo */}
           <OddsBoraLogo variant="light" />
           
           <button onClick={onClose} aria-label="Close menu" className="text-navy-950/60 hover:text-navy-950 p-1">
