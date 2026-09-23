@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Newspaper, Clock, ChevronRight, TrendingUp, Calendar, Globe } from 'lucide-react'
+// Removed 'Globe' from the import below to fix the build error
+import { Newspaper, Clock, ChevronRight, TrendingUp, Calendar } from 'lucide-react'
 
 // Mock data structure - ready to be connected to your Supabase backend later
 const MOCK_NEWS = [
