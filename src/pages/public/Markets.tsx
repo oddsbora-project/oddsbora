@@ -1,16 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { 
-  TrendingUp, 
-  Target, 
-  ShieldCheck, 
-  Clock, 
-  ChevronRight, 
-  Activity, 
-  BarChart3, 
-  Info,
-  Flame
-} from 'lucide-react'
+// Removed unused imports: Link, ChevronRight, Activity, Flame
+import { TrendingUp, Target, ShieldCheck, Clock, BarChart3, Info } from 'lucide-react'
 
 // --- MOCK DATA: Replace with data from your Supabase 'tips' table ---
 const MOCK_TIPS = [
@@ -82,11 +71,7 @@ const MOCK_TIPS = [
 ]
 
 export default function Markets() {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
+  // Removed unused state and useEffect
 
   // Calculate some mock performance stats
   const stats = {
