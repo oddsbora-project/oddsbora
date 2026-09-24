@@ -1,8 +1,9 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '@/lib/auth-context'
 
 export default function ProtectedRoute() {
   const { user, loading } = useAuth()
+  const location = useLocation()
 
   if (loading) {
     return (
@@ -12,6 +13,9 @@ export default function ProtectedRoute() {
     )
   }
 
-  if (!user) return <Navigate to="/login" replace />
+  // Remember where the user was trying to go (e.g. /admin) so Login.tsx
+  // can send them back there after they sign in, instead of always
+  // dropping them on /dashboard.
+  if (!user) return <Navigate to="/login" state={{ from: location }} replace />
   return <Outlet />
 }
