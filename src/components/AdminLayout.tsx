@@ -1,9 +1,10 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { LayoutDashboard, CalendarClock, LineChart, Target, Users, ScrollText } from 'lucide-react'
+import { LayoutDashboard, CalendarClock, LineChart, Target, Users, ScrollText, Lightbulb } from 'lucide-react'
 
 const ADMIN_NAV = [
   { to: '/admin', label: 'Overview', icon: LayoutDashboard, exact: true },
   { to: '/admin/matches', label: 'Matches', icon: CalendarClock },
+  { to: '/admin/tips', label: 'Tips', icon: Lightbulb },
   { to: '/admin/odds', label: 'Odds', icon: LineChart },
   { to: '/admin/predictions', label: 'Predictions', icon: Target },
   { to: '/admin/users', label: 'Users', icon: Users },
