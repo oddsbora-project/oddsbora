@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { TrendingUp, Target, ShieldCheck, Clock, BarChart3, Info, Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react'
+// Removed unused imports: ChevronLeft, ChevronRight
+import { TrendingUp, Target, ShieldCheck, Clock, BarChart3, Info, Calendar as CalendarIcon } from 'lucide-react'
 
 // Helper to generate the next 10 days
 const getNext10Days = () => {
@@ -154,7 +155,8 @@ export default function Markets() {
         </div>
         
         <div className="flex gap-2 overflow-x-auto pb-4 custom-scrollbar">
-          {DAYS.map((date, i) => {
+          {/* Removed the unused 'i' parameter */}
+          {DAYS.map((date) => {
             const dateStr = date.toISOString().split('T')[0]
             const isActive = dateStr === selectedDate
             const { dayName, dayNum } = formatDateLabel(date)
