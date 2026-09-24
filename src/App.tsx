@@ -30,6 +30,7 @@ import Subscription from '@/pages/app/Subscription'
 
 import AdminOverview from '@/pages/admin/Overview'
 import AdminMatches from '@/pages/admin/Matches'
+import AdminTips from '@/pages/admin/Tips'
 import AdminOdds from '@/pages/admin/Odds'
 import AdminPredictions from '@/pages/admin/Predictions'
 import AdminUsers from '@/pages/admin/Users'
@@ -73,6 +74,7 @@ export default function App() {
             <Route element={<AdminLayout />}>
               <Route path="admin" element={<AdminOverview />} />
               <Route path="admin/matches" element={<AdminMatches />} />
+              <Route path="admin/tips" element={<AdminTips />} />
               <Route path="admin/odds" element={<AdminOdds />} />
               <Route path="admin/predictions" element={<AdminPredictions />} />
               <Route path="admin/users" element={<AdminUsers />} />
