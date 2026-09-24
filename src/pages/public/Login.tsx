@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { supabase } from '@/lib/supabase'
 
 export default function Login() {
@@ -8,6 +8,7 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -19,7 +20,11 @@ export default function Login() {
       setError(error.message)
       return
     }
-    navigate('/dashboard')
+    // If the user was redirected here from a specific page (e.g. /admin),
+    // ProtectedRoute should pass it via location.state.from — send them back
+    // there instead of always dropping them on /dashboard.
+    const from = (location.state as { from?: { pathname: string } } | null)?.from?.pathname
+    navigate(from ?? '/dashboard', { replace: true })
   }
 
   return (
