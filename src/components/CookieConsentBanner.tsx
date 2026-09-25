@@ -91,18 +91,17 @@ export default function CookieConsentBanner() {
   if (!visible) return null
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:pb-6 sm:px-6">
-      <div className="mx-auto max-w-2xl rounded-2xl border border-black/10 bg-white shadow-xl shadow-black/10 overflow-hidden">
-        <div className="p-5">
-          <div className="flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-signal-green/10 flex items-center justify-center shrink-0">
-              <Cookie size={18} className="text-signal-green" />
+    <div className="fixed z-50 bottom-4 right-4 left-4 sm:left-auto sm:bottom-5 sm:right-5">
+      <div className="w-full sm:w-80 rounded-xl border border-black/10 bg-white shadow-xl shadow-black/10 overflow-hidden">
+        <div className="p-4">
+          <div className="flex items-start gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-signal-green/10 flex items-center justify-center shrink-0">
+              <Cookie size={16} className="text-signal-green" />
             </div>
             <div className="min-w-0">
               <h2 className="text-sm font-bold text-navy-950 mb-1">We use cookies</h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                We use strictly necessary cookies to keep you signed in, plus optional cookies to remember
-                preferences and understand usage. You can change your choice anytime. See our{' '}
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Necessary cookies keep you signed in; optional ones help us improve the Service. See our{' '}
                 <a href="/cookie-policy" className="text-signal-green font-semibold hover:underline">
                   Cookie Policy
                 </a>
@@ -114,12 +113,12 @@ export default function CookieConsentBanner() {
               className="text-slate-400 hover:text-navy-950 transition-colors shrink-0"
               aria-label="Dismiss and decline non-essential cookies"
             >
-              <X size={18} />
+              <X size={16} />
             </button>
           </div>
 
           {expanded && (
-            <div className="mt-4 space-y-3 border-t border-black/5 pt-4">
+            <div className="mt-3 space-y-3 border-t border-black/5 pt-3 max-h-64 overflow-y-auto">
               <PreferenceRow
                 label="Strictly necessary"
                 description="Required for login and core functionality. Cannot be turned off."
@@ -148,36 +147,38 @@ export default function CookieConsentBanner() {
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2 px-5 pb-5">
+        <div className="flex flex-col gap-1.5 px-4 pb-4">
           {expanded ? (
             <>
-              <button onClick={savePreferences} className="btn-primary flex-1 order-1 sm:order-none">
+              <button onClick={savePreferences} className="btn-primary w-full text-sm py-2">
                 Save preferences
               </button>
               <button
                 onClick={() => setExpanded(false)}
-                className="flex-1 rounded-full border border-black/10 text-navy-950 text-sm font-semibold py-2.5 hover:bg-black/5 transition-colors"
+                className="w-full rounded-full border border-black/10 text-navy-950 text-xs font-semibold py-2 hover:bg-black/5 transition-colors"
               >
                 Back
               </button>
             </>
           ) : (
             <>
-              <button onClick={acceptAll} className="btn-primary flex-1 order-1 sm:order-none">
+              <button onClick={acceptAll} className="btn-primary w-full text-sm py-2">
                 Accept all
               </button>
-              <button
-                onClick={declineNonEssential}
-                className="flex-1 rounded-full border border-black/10 text-navy-950 text-sm font-semibold py-2.5 hover:bg-black/5 transition-colors"
-              >
-                Decline non-essential
-              </button>
-              <button
-                onClick={() => setExpanded(true)}
-                className="flex-1 text-sm font-semibold text-slate-500 hover:text-navy-950 transition-colors py-2.5"
-              >
-                Manage preferences
-              </button>
+              <div className="flex gap-1.5">
+                <button
+                  onClick={declineNonEssential}
+                  className="flex-1 rounded-full border border-black/10 text-navy-950 text-xs font-semibold py-2 hover:bg-black/5 transition-colors"
+                >
+                  Decline
+                </button>
+                <button
+                  onClick={() => setExpanded(true)}
+                  className="flex-1 text-xs font-semibold text-slate-500 hover:text-navy-950 transition-colors py-2"
+                >
+                  Manage
+                </button>
+              </div>
             </>
           )}
         </div>
