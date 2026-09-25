@@ -1,13 +1,17 @@
 import { useState, FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '@/lib/supabase'
-import { User, Mail, Lock, Eye, EyeOff, Activity, AlertCircle, MailCheck } from 'lucide-react'
+import { User, Mail, Lock, Eye, EyeOff, ShieldCheck, AlertCircle, MailCheck } from 'lucide-react'
+
+const MIN_PASSWORD_LENGTH = 6
 
 export default function Register() {
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [done, setDone] = useState(false)
@@ -16,6 +20,16 @@ export default function Register() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setError(null)
+
+    if (password.length < MIN_PASSWORD_LENGTH) {
+      setError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`)
+      return
+    }
+    if (password !== confirmPassword) {
+      setError('Passwords do not match. Please re-enter them.')
+      return
+    }
+
     setLoading(true)
     const { error, data } = await supabase.auth.signUp({
       email,
@@ -65,10 +79,10 @@ export default function Register() {
       </div>
 
       <div className="w-full max-w-sm">
-        {/* Brand mark */}
+        {/* Brand mark — security/account-creation themed */}
         <div className="flex flex-col items-center mb-8">
           <div className="w-12 h-12 rounded-2xl bg-signal-green/10 flex items-center justify-center mb-4">
-            <Activity size={22} className="text-signal-green" />
+            <ShieldCheck size={22} className="text-signal-green" />
           </div>
           <h1 className="text-2xl font-display font-bold text-navy-950">Create your account</h1>
           <p className="text-slate-500 text-sm mt-1">Free to join. You must be 18 or older to use OddsBora.</p>
@@ -96,7 +110,7 @@ export default function Register() {
                   autoComplete="name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Jane Wanjiru"
+                  placeholder="John Doe"
                   className="w-full bg-white border border-black/10 rounded-xl pl-10 pr-3 py-2.5 text-sm text-navy-950 placeholder:text-slate-400 outline-none transition-colors focus:border-signal-green focus:ring-2 focus:ring-signal-green/20"
                 />
               </div>
@@ -131,11 +145,11 @@ export default function Register() {
                   id="register-password"
                   type={showPassword ? 'text' : 'password'}
                   required
-                  minLength={8}
+                  minLength={MIN_PASSWORD_LENGTH}
                   autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="At least 8 characters"
+                  placeholder="At least 6 characters"
                   className="w-full bg-white border border-black/10 rounded-xl pl-10 pr-11 py-2.5 text-sm text-navy-950 placeholder:text-slate-400 outline-none transition-colors focus:border-signal-green focus:ring-2 focus:ring-signal-green/20"
                 />
                 <button
@@ -146,6 +160,38 @@ export default function Register() {
                   tabIndex={-1}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
+              <p className="text-xs text-slate-400 mt-1.5">
+                6+ characters — letters, numbers, and symbols are all fine.
+              </p>
+            </div>
+
+            <div>
+              <label htmlFor="register-confirm-password" className="text-xs font-semibold text-slate-500 block mb-1.5">
+                Confirm password
+              </label>
+              <div className="relative">
+                <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  id="register-confirm-password"
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  required
+                  minLength={MIN_PASSWORD_LENGTH}
+                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Re-enter your password"
+                  className="w-full bg-white border border-black/10 rounded-xl pl-10 pr-11 py-2.5 text-sm text-navy-950 placeholder:text-slate-400 outline-none transition-colors focus:border-signal-green focus:ring-2 focus:ring-signal-green/20"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword((s) => !s)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-navy-950 transition-colors"
+                  aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                  tabIndex={-1}
+                >
+                  {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
