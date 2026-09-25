@@ -2,6 +2,12 @@ import { Link } from 'react-router-dom'
 import { X, Home, Sparkles, Compass, BarChart3, Newspaper, Info, ShieldCheck, LogIn, UserPlus, ChevronRight } from 'lucide-react'
 import OddsBoraLogo from './OddsBoraLogo' // Import the new logo component
 
+const LEGAL_LINKS = [
+  { to: '/privacy-policy', label: 'Privacy Policy' },
+  { to: '/terms-of-service', label: 'Terms of Service' },
+  { to: '/cookie-policy', label: 'Cookie Policy' },
+]
+
 interface MobileMenuProps {
   open: boolean
   onClose: () => void
@@ -70,6 +76,17 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             </span>
             <ChevronRight size={16} className="text-navy-950/25" />
           </Link>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-5 py-4 text-xs text-navy-950/40">
+            {LEGAL_LINKS.map((link, i) => (
+              <span key={link.to} className="flex items-center gap-3">
+                {i > 0 && <span className="text-navy-950/20">·</span>}
+                <Link to={link.to} onClick={onClose} className="hover:text-navy-950/70 transition-colors">
+                  {link.label}
+                </Link>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
