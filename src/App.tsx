@@ -5,6 +5,7 @@ import AppLayout from '@/components/AppLayout'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import AdminRoute from '@/components/AdminRoute'
 import AdminLayout from '@/components/AdminLayout'
+import CookieConsentBanner from '@/components/CookieConsentBanner'
 
 import Landing from '@/pages/public/Landing'
 import Features from '@/pages/public/Features'
@@ -17,6 +18,9 @@ import ResponsibleUse from '@/pages/public/ResponsibleUse'
 import Login from '@/pages/public/Login'
 import Register from '@/pages/public/Register'
 import ForgotPassword from '@/pages/public/ForgotPassword'
+import PrivacyPolicy from '@/pages/public/PrivacyPolicy'
+import TermsOfService from '@/pages/public/TermsOfService'
+import CookiePolicy from '@/pages/public/CookiePolicy'
 
 import Dashboard from '@/pages/app/Dashboard'
 import Matches from '@/pages/app/Matches'
@@ -40,6 +44,7 @@ import AdminAudit from '@/pages/admin/Audit'
 export default function App() {
   return (
     <AuthProvider>
+      <CookieConsentBanner />
       <Routes>
         {/* Public Routes */}
         <Route element={<Layout />}>
@@ -54,6 +59,9 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route path="cookie-policy" element={<CookiePolicy />} />
         </Route>
 
         {/* Protected App Routes */}
