@@ -29,6 +29,12 @@ const INFO_ITEMS = [
   { to: '/responsible-use', label: 'Responsible Use', icon: ShieldQuestion },
 ]
 
+const LEGAL_LINKS = [
+  { to: '/privacy-policy', label: 'Privacy Policy' },
+  { to: '/terms-of-service', label: 'Terms of Service' },
+  { to: '/cookie-policy', label: 'Cookie Policy' },
+]
+
 export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
   const { user, signOut } = useAuth()
   const [isAdmin, setIsAdmin] = useState(false)
@@ -98,6 +104,17 @@ export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
               </Link>
             )
           })}
+
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-5 pt-4 pb-2 text-xs text-white/30">
+            {LEGAL_LINKS.map((link, i) => (
+              <span key={link.to} className="flex items-center gap-3">
+                {i > 0 && <span className="text-white/15">·</span>}
+                <Link to={link.to} onClick={onClose} className="hover:text-white/60 transition-colors">
+                  {link.label}
+                </Link>
+              </span>
+            ))}
+          </div>
         </nav>
 
         <div className="border-t border-white/10 relative bg-navy-900">
