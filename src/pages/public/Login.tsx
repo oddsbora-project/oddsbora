@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { supabase } from '@/lib/supabase'
-import { Mail, Lock, Eye, EyeOff, Activity, AlertCircle } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff, LogIn, AlertCircle } from 'lucide-react'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -41,7 +41,7 @@ export default function Login() {
         {/* Brand mark */}
         <div className="flex flex-col items-center mb-8">
           <div className="w-12 h-12 rounded-2xl bg-signal-green/10 flex items-center justify-center mb-4">
-            <Activity size={22} className="text-signal-green" />
+            <LogIn size={22} className="text-signal-green" />
           </div>
           <h1 className="text-2xl font-display font-bold text-navy-950">Welcome back</h1>
           <p className="text-slate-500 text-sm mt-1">Log in to see today's picks</p>
