@@ -6,9 +6,6 @@ const H2 = ({ id, children }: { id: string; children: React.ReactNode }) => (
     {children}
   </h2>
 )
-const H3 = ({ children }: { children: React.ReactNode }) => (
-  <h3 className="text-base font-semibold text-navy-950 mt-5 mb-2">{children}</h3>
-)
 const P = ({ children }: { children: React.ReactNode }) => (
   <p className="text-slate-600 leading-relaxed mb-4">{children}</p>
 )
