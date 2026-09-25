@@ -12,6 +12,7 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [agreedToTerms, setAgreedToTerms] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [done, setDone] = useState(false)
@@ -27,6 +28,10 @@ export default function Register() {
     }
     if (password !== confirmPassword) {
       setError('Passwords do not match. Please re-enter them.')
+      return
+    }
+    if (!agreedToTerms) {
+      setError('You must agree to the Terms of Service and Privacy Policy to create an account.')
       return
     }
 
@@ -196,7 +201,31 @@ export default function Register() {
               </div>
             </div>
 
-            <button type="submit" disabled={loading} className="btn-primary w-full disabled:opacity-50 mt-2">
+            <label className="flex items-start gap-2.5 text-sm text-slate-600 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={agreedToTerms}
+                onChange={(e) => setAgreedToTerms(e.target.checked)}
+                className="mt-0.5 w-4 h-4 rounded border-black/20 text-signal-green focus:ring-signal-green/30 shrink-0"
+              />
+              <span>
+                I agree to the{' '}
+                <Link to="/terms-of-service" target="_blank" rel="noopener noreferrer" className="text-signal-green font-semibold hover:underline">
+                  Terms of Service
+                </Link>{' '}
+                and{' '}
+                <Link to="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-signal-green font-semibold hover:underline">
+                  Privacy Policy
+                </Link>
+                .
+              </span>
+            </label>
+
+            <button
+              type="submit"
+              disabled={loading || !agreedToTerms}
+              className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+            >
               {loading ? 'Creating account…' : 'Create account'}
             </button>
           </form>
