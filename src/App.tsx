@@ -16,6 +16,7 @@ import About from '@/pages/public/About'
 import ResponsibleUse from '@/pages/public/ResponsibleUse'
 import Login from '@/pages/public/Login'
 import Register from '@/pages/public/Register'
+import ForgotPassword from '@/pages/public/ForgotPassword'
 
 import Dashboard from '@/pages/app/Dashboard'
 import Matches from '@/pages/app/Matches'
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="responsible-use" element={<ResponsibleUse />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
 
         {/* Protected App Routes */}
