@@ -118,7 +118,7 @@ export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
 
           <div className="px-5 pb-2">
             <Link
-              to="/profile#delete-account"
+              to="/delete-account"
               onClick={onClose}
               className="inline-flex items-center gap-1.5 text-xs text-red-400/70 hover:text-red-400 transition-colors"
             >
