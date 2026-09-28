@@ -2,7 +2,8 @@ import { useEffect, useState, FormEvent } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth-context'
 import { Profile as ProfileType } from '@/lib/types'
-import DeleteAccountSection from '@/components/DeleteAccountSection'
+import { Link } from 'react-router-dom'
+import { Trash2 } from 'lucide-react'
 
 export default function Profile() {
   const { user, signOut } = useAuth()
@@ -52,7 +53,12 @@ export default function Profile() {
         </button>
       </form>
       <button onClick={signOut} className="btn-secondary w-full mt-4">Log out</button>
-      <DeleteAccountSection />
+      <div className="mt-8 text-center">
+        <Link to="/delete-account" className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-600 hover:text-red-700 transition-colors">
+          <Trash2 size={14} />
+          Delete account
+        </Link>
+      </div>
     </div>
   )
 }
