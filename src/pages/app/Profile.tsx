@@ -2,6 +2,7 @@ import { useEffect, useState, FormEvent } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth-context'
 import { Profile as ProfileType } from '@/lib/types'
+import DeleteAccountSection from '@/components/DeleteAccountSection'
 
 export default function Profile() {
   const { user, signOut } = useAuth()
@@ -51,6 +52,7 @@ export default function Profile() {
         </button>
       </form>
       <button onClick={signOut} className="btn-secondary w-full mt-4">Log out</button>
+      <DeleteAccountSection />
     </div>
   )
 }
