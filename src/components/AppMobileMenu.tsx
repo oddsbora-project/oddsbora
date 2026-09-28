@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   X, Home, ListChecks, Radio, FlaskConical, LineChart as LineChartIcon,
-  Star, Bell, User, CreditCard, ShieldCheck, LogOut, Info, ShieldQuestion, ChevronRight,
+  Star, Bell, User, CreditCard, ShieldCheck, LogOut, Info, ShieldQuestion, ChevronRight, Trash2,
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth-context'
@@ -114,6 +114,17 @@ export default function AppMobileMenu({ open, onClose }: AppMobileMenuProps) {
                 </Link>
               </span>
             ))}
+          </div>
+
+          <div className="px-5 pb-2">
+            <Link
+              to="/profile#delete-account"
+              onClick={onClose}
+              className="inline-flex items-center gap-1.5 text-xs text-red-400/70 hover:text-red-400 transition-colors"
+            >
+              <Trash2 size={12} />
+              Delete account
+            </Link>
           </div>
         </nav>
 
