@@ -253,10 +253,10 @@ export default function TermsOfService() {
       </P>
       <P>
         <Key>You can delete your account yourself at any time.</Key> Go to{' '}
-        <a href="/profile#delete-account" className="text-signal-green font-semibold hover:underline">
-          Profile
+        <a href="/delete-account" className="text-signal-green font-semibold hover:underline">
+          Delete account
         </a>{' '}
-        in the app and choose <Key>"Delete my account"</Key>. For your security, we email a verification code to
+        in the app (also reachable from your Profile and the menu). For your security, we email a verification code to
         the address on your account, and the deletion completes once you enter that code. Deletion is permanent:
         your profile, favorites, notifications, preferences, and subscription record are removed, as described in
         our Privacy Policy. Deleting your account does not entitle you to a refund (see Section 5).
