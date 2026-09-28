@@ -1,5 +1,5 @@
-import { useState, FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useRef, useState, FormEvent } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { FunctionsHttpError } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth-context'
@@ -10,11 +10,20 @@ type Step = 'idle' | 'confirm' | 'code'
 export default function DeleteAccountSection() {
   const { user } = useAuth()
   const navigate = useNavigate()
+  const { hash } = useLocation()
+  const sectionRef = useRef<HTMLDivElement>(null)
   const [step, setStep] = useState<Step>('idle')
   const [code, setCode] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [info, setInfo] = useState<string | null>(null)
+
+  // Lets a link like /profile#delete-account jump straight to this section.
+  useEffect(() => {
+    if (hash === '#delete-account') {
+      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [hash])
 
   function reset() {
     setStep('idle')
@@ -72,7 +81,7 @@ export default function DeleteAccountSection() {
   }
 
   return (
-    <div className="mt-10 rounded-xl border border-red-500/30 bg-red-500/5 p-4">
+    <div id="delete-account" ref={sectionRef} className="mt-10 rounded-xl border border-red-500/30 bg-red-500/5 p-4">
       <div className="flex items-center gap-2 mb-1">
         <AlertTriangle size={16} className="text-red-400" />
         <h2 className="text-sm font-bold text-red-400">Delete account</h2>
