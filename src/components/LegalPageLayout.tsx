@@ -9,7 +9,7 @@ interface Section {
 interface LegalPageLayoutProps {
   title: string
   lastUpdated: string
-  intro?: string
+  intro?: ReactNode
   sections: Section[]
   children: ReactNode
 }
@@ -23,7 +23,7 @@ export default function LegalPageLayout({ title, lastUpdated, intro, sections, c
       </div>
       <h1 className="text-3xl md:text-4xl font-display font-bold text-navy-950 mb-2">{title}</h1>
       <p className="text-sm text-slate-400 mb-6">Last updated: {lastUpdated}</p>
-      {intro && <p className="text-slate-600 leading-relaxed mb-8">{intro}</p>}
+      {intro && <div className="text-slate-600 leading-relaxed mb-8">{intro}</div>}
 
       {/* Table of contents */}
       <nav className="glass-panel-light rounded-2xl border border-black/5 p-5 mb-10">
