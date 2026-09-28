@@ -21,6 +21,7 @@ import ForgotPassword from '@/pages/public/ForgotPassword'
 import PrivacyPolicy from '@/pages/public/PrivacyPolicy'
 import TermsOfService from '@/pages/public/TermsOfService'
 import CookiePolicy from '@/pages/public/CookiePolicy'
+import AccountDeleted from '@/pages/public/AccountDeleted'
 
 import Dashboard from '@/pages/app/Dashboard'
 import Matches from '@/pages/app/Matches'
@@ -32,6 +33,7 @@ import Favorites from '@/pages/app/Favorites'
 import Notifications from '@/pages/app/Notifications'
 import Profile from '@/pages/app/Profile'
 import Subscription from '@/pages/app/Subscription'
+import DeleteAccount from '@/pages/app/DeleteAccount'
 
 import AdminOverview from '@/pages/admin/Overview'
 import AdminMatches from '@/pages/admin/Matches'
@@ -62,6 +64,7 @@ export default function App() {
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="terms-of-service" element={<TermsOfService />} />
           <Route path="cookie-policy" element={<CookiePolicy />} />
+          <Route path="account-deleted" element={<AccountDeleted />} />
         </Route>
 
         {/* Protected App Routes */}
@@ -77,6 +80,7 @@ export default function App() {
             <Route path="notifications" element={<Notifications />} />
             <Route path="profile" element={<Profile />} />
             <Route path="subscription" element={<Subscription />} />
+            <Route path="delete-account" element={<DeleteAccount />} />
           </Route>
 
           {/* Protected Admin Routes */}
