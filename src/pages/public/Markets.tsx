@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { TrendingUp, Target, ShieldCheck, Clock, BarChart3, Info, Calendar as CalendarIcon, AlertCircle } from 'lucide-react'
+import { getCookieConsent, DATE_PREF_STORAGE_KEY } from '@/components/CookieConsentBanner'
 
 // Helper to generate the next 10 days
 const getNext10Days = () => {
@@ -25,6 +26,25 @@ const toLocalDateStr = (d: Date) => {
 }
 
 const DAYS = getNext10Days()
+
+// Remembers which day the visitor last looked at, so returning to Markets
+// doesn't always reset to today. Only reads the saved value if the visitor
+// has consented to Functional cookies — otherwise it's ignored entirely,
+// consistent with what the Cookie Policy says this cookie category does.
+function getInitialSelectedDate(): string {
+  const todayStr = toLocalDateStr(DAYS[0])
+  if (getCookieConsent()?.functional !== true) return todayStr
+  try {
+    const saved = localStorage.getItem(DATE_PREF_STORAGE_KEY)
+    if (!saved) return todayStr
+    const rangeStart = todayStr
+    const rangeEnd = toLocalDateStr(DAYS[DAYS.length - 1])
+    // Ignore a saved date once it's fallen outside the visible 10-day window.
+    return saved >= rangeStart && saved <= rangeEnd ? saved : todayStr
+  } catch {
+    return todayStr
+  }
+}
 
 interface Tip {
   id: string
@@ -60,7 +80,7 @@ function mapTipRow(row: Record<string, unknown>): Tip {
 }
 
 export default function Markets() {
-  const [selectedDate, setSelectedDate] = useState<string>(toLocalDateStr(DAYS[0]))
+  const [selectedDate, setSelectedDate] = useState<string>(getInitialSelectedDate)
   const [tips, setTips] = useState<Tip[] | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -160,7 +180,16 @@ export default function Markets() {
             return (
               <button
                 key={dateStr}
-                onClick={() => setSelectedDate(dateStr)}
+                onClick={() => {
+                  setSelectedDate(dateStr)
+                  if (getCookieConsent()?.functional === true) {
+                    try {
+                      localStorage.setItem(DATE_PREF_STORAGE_KEY, dateStr)
+                    } catch {
+                      // ignore — storage unavailable
+                    }
+                  }
+                }}
                 className={`flex flex-col items-center justify-center min-w-[70px] py-3 rounded-2xl border transition-all duration-300 ${
                   isActive
                     ? 'bg-navy-950 text-white border-navy-950 shadow-md'
