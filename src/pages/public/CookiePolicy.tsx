@@ -1,6 +1,7 @@
 import LegalPageLayout from '@/components/LegalPageLayout'
 import { openCookieSettings } from '@/components/CookieConsentBanner'
 
+// ── Typography helpers (same system as the other legal pages) ──────
 const H2 = ({ id, children }: { id: string; children: React.ReactNode }) => (
   <h2 id={id} className="text-xl font-bold text-navy-950 mt-10 mb-3 scroll-mt-24">
     {children}
@@ -11,6 +12,17 @@ const P = ({ children }: { children: React.ReactNode }) => (
 )
 const UL = ({ children }: { children: React.ReactNode }) => (
   <ul className="list-disc pl-5 space-y-1.5 text-slate-600 mb-4">{children}</ul>
+)
+const Brand = () => (
+  <span className="whitespace-nowrap font-display font-bold bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">
+    OddsBora
+  </span>
+)
+const Key = ({ children }: { children: React.ReactNode }) => (
+  <strong className="font-semibold text-amber-700">{children}</strong>
+)
+const Lead = ({ children }: { children: React.ReactNode }) => (
+  <strong className="font-semibold text-navy-950">{children}</strong>
 )
 const Table = ({ head, rows }: { head: string[]; rows: string[][] }) => (
   <div className="overflow-x-auto mb-6 rounded-xl border border-black/10">
@@ -54,8 +66,15 @@ export default function CookiePolicy() {
   return (
     <LegalPageLayout
       title="Cookie Policy"
-      lastUpdated="[Insert publish date]"
-      intro="This Cookie Policy explains how OddsBora uses cookies and similar technologies, and the choices available to you, in line with Kenya's Data Protection Act, 2019 and the Data Protection (General) Regulations, 2021, which require that non-essential cookies only be set with your informed, freely-given consent."
+      lastUpdated="28 September 2026"
+      intro={
+        <>
+          This Cookie Policy explains how <Brand /> uses cookies and similar technologies, and the choices
+          available to you, in line with Kenya's Data Protection Act, 2019 and the Data Protection (General)
+          Regulations, 2021, which require that non-essential cookies only be set with your informed,
+          freely-given consent.
+        </>
+      }
       sections={SECTIONS}
     >
       <H2 id="what-are-cookies">What Are Cookies</H2>
@@ -69,20 +88,22 @@ export default function CookiePolicy() {
       <H2 id="types">Types of Cookies We Use</H2>
       <UL>
         <li>
-          <strong>Strictly necessary:</strong> required for core functionality such as staying logged in. These
-          cannot be switched off without breaking the Service, and do not require consent under the Regulations.
+          <Lead>Strictly necessary:</Lead> required for core functionality such as staying logged in. These cannot
+          be switched off without breaking the Service, and do not require consent under the Regulations.
         </li>
         <li>
-          <strong>Functional / preference:</strong> remember choices you've made, such as your selected date on the
-          Markets page or display preferences.
+          <Lead>Functional / preference:</Lead> remember choices you've made, such as your selected date on the
+          Markets page. Like analytics and marketing cookies, these are <Key>only set with your consent</Key>.
         </li>
         <li>
-          <strong>Analytics (if enabled):</strong> help us understand aggregate usage patterns so we can improve
-          the Service. These are only set with your consent.
+          <Lead>Analytics (if enabled):</Lead> would help us understand aggregate usage patterns so we can improve
+          the Service. We do not currently use any analytics tool. If we introduce one, this policy will be
+          updated first, and these cookies will only be set with your consent.
         </li>
         <li>
-          <strong>Marketing (if enabled):</strong> used to measure the effectiveness of any promotional campaigns.
-          These are only set with your consent, and OddsBora does not currently use third-party advertising cookies.
+          <Lead>Marketing (if enabled):</Lead> used to measure the effectiveness of any promotional campaigns.
+          OddsBora does not currently use any marketing or advertising cookies. These would only ever be set with
+          your consent.
         </li>
       </UL>
 
@@ -93,16 +114,19 @@ export default function CookiePolicy() {
         rows={[
           ['sb-access-token', 'Keeps you signed in to your account (set by Supabase Auth)', 'Strictly necessary', 'Session / short-lived'],
           ['sb-refresh-token', 'Silently renews your session without requiring re-login', 'Strictly necessary', 'Persistent — until logout or expiry'],
-          ['[e.g. ob-date-pref]', 'Remembers your last selected date on the Markets page', 'Functional', '[Insert duration]'],
-          ['[Insert analytics cookie name, if used]', '[Insert purpose, e.g. aggregate usage analytics]', 'Analytics — requires consent', '[Insert duration]'],
+          ['ob-date-pref', "Remembers the date you last selected on the Markets page, so it's still selected next time you visit", 'Functional — requires consent', 'Persistent — until you clear it or decline functional cookies in Cookie Settings'],
         ]}
       />
+      <P>
+        We do not currently use any analytics or marketing cookies. This table will be updated, and your consent
+        requested, before any are introduced.
+      </P>
 
       <H2 id="third-party">Third-Party Cookies</H2>
       <P>
         Some cookies may be set by third-party services we rely on to operate the Service, such as our hosting
-        provider (Cloudflare) for security and performance purposes. We do not currently use third-party
-        advertising networks. If this changes, this policy and our consent mechanism will be updated accordingly.
+        provider for security and performance purposes. We do not currently use third-party advertising networks.
+        If this changes, this policy and our consent mechanism will be updated accordingly.
       </P>
 
       <H2 id="consent">Your Consent Choices</H2>
@@ -132,7 +156,11 @@ export default function CookiePolicy() {
 
       <H2 id="contact">Contact</H2>
       <P>
-        Questions about our use of cookies can be sent to <strong>[Insert contact email]</strong>.
+        Questions about our use of cookies can be sent to{' '}
+        <a href="mailto:cookies@oddsbora.com" className="text-signal-green font-semibold hover:underline">
+          cookies@oddsbora.com
+        </a>
+        .
       </P>
     </LegalPageLayout>
   )
