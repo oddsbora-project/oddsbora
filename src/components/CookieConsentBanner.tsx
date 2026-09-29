@@ -4,6 +4,12 @@ import { Cookie, X } from 'lucide-react'
 const STORAGE_KEY = 'oddsbora-cookie-consent'
 const REOPEN_EVENT = 'oddsbora:open-cookie-settings'
 
+// Storage keys that only exist because the visitor accepted "Functional"
+// cookies. Listed here (rather than owned by each feature) means they get
+// cleared in one place, in save(), the moment functional consent is revoked.
+export const DATE_PREF_STORAGE_KEY = 'ob-date-pref'
+export const FUNCTIONAL_STORAGE_KEYS = [DATE_PREF_STORAGE_KEY]
+
 interface ConsentState {
   necessary: true // always on — required for login/session to function
   functional: boolean
@@ -71,6 +77,16 @@ export default function CookieConsentBanner() {
       // localStorage unavailable (e.g. private browsing) — consent still
       // applies for this session via component state.
     }
+    if (!next.functional) {
+      for (const key of FUNCTIONAL_STORAGE_KEYS) {
+        try {
+          localStorage.removeItem(key)
+        } catch {
+          // ignore — storage unavailable
+        }
+      }
+    }
+
     setPrefs(state)
     setVisible(false)
     setExpanded(false)
