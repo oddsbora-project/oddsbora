@@ -9,9 +9,22 @@ export default function OddsBoraLogo({ variant = 'light' }: OddsBoraLogoProps) {
 
   return (
     <div className="flex items-center gap-2.5">
-      {/* Modern Vector Icon */}
-      <div className={`p-1.5 rounded-xl flex items-center justify-center ${isLight ? 'bg-signal-green/10' : 'bg-signal-green/20'}`}>
-        <Activity className="text-signal-green" size={22} strokeWidth={2.5} />
+      <style>{`
+        @keyframes ob-logo-pulse-ring {
+          0% { transform: scale(1); opacity: 0.35; }
+          100% { transform: scale(1.8); opacity: 0; }
+        }
+      `}</style>
+
+      {/* Icon badge with a live "signal" pulse behind it */}
+      <div className="relative flex items-center justify-center">
+        <span
+          className="absolute inset-0 rounded-xl bg-signal-green"
+          style={{ animation: 'ob-logo-pulse-ring 2.4s ease-out infinite' }}
+        />
+        <div className={`relative p-1.5 rounded-xl flex items-center justify-center ${isLight ? 'bg-signal-green/10' : 'bg-signal-green/20'}`}>
+          <Activity className="text-signal-green" size={22} strokeWidth={2.5} />
+        </div>
       </div>
       
       {/* Modern Typography */}
@@ -24,7 +37,11 @@ export default function OddsBoraLogo({ variant = 'light' }: OddsBoraLogoProps) {
             Bora
           </span>
         </div>
-        <span className={`text-[9px] font-mono uppercase tracking-widest mt-1 ${isLight ? 'text-navy-950/50' : 'text-white/50'}`}>
+        <span
+          className={`text-[9px] font-display font-semibold uppercase tracking-[0.15em] mt-1 bg-clip-text text-transparent ${
+            isLight ? 'bg-gradient-to-r from-emerald-600 to-sky-600' : 'bg-gradient-to-r from-emerald-400 to-sky-400'
+          }`}
+        >
           AI Sports Intelligence
         </span>
       </div>
