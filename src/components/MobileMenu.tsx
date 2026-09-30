@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { X, Home, Sparkles, Compass, BarChart3, Newspaper, Info, ShieldCheck, LogIn, UserPlus, ChevronRight } from 'lucide-react'
 import OddsBoraLogo from './OddsBoraLogo' // Import the new logo component
@@ -24,13 +25,35 @@ const MENU_ITEMS = [
 ]
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
+  // Drives the staggered item entrance below. Runs fresh each time the
+  // panel opens, so the animation replays instead of only firing once.
+  const [itemsIn, setItemsIn] = useState(false)
+  useEffect(() => {
+    if (!open) {
+      setItemsIn(false)
+      return
+    }
+    const id = requestAnimationFrame(() => setItemsIn(true))
+    return () => cancelAnimationFrame(id)
+  }, [open])
+
   if (!open) return null
 
   return (
     <div className="md:hidden">
+      <style>{`
+        @keyframes ob-menu-glow-pulse {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 0.9; transform: scale(1.15); }
+        }
+      `}</style>
       <div className="menu-backdrop backdrop-fade-in" onClick={onClose} />
       <div className="menu-panel-light panel-slide-in">
         <div className="menu-blob bg-signal-green/15 -bottom-10 -right-10" />
+        <div
+          className="pointer-events-none absolute top-20 -left-8 w-32 h-32 rounded-full bg-gradient-to-br from-emerald-400/20 to-sky-400/20 blur-2xl"
+          style={{ animation: 'ob-menu-glow-pulse 5s ease-in-out infinite' }}
+        />
 
         <div className="flex items-center justify-between px-5 h-16 border-b border-black/10 relative">
           <OddsBoraLogo variant="light" />
@@ -41,17 +64,31 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
         </div>
 
         <nav className="flex-1 overflow-y-auto relative">
-          {MENU_ITEMS.map((item) => {
+          {MENU_ITEMS.map((item, i) => {
             const Icon = item.icon
             return (
-              <Link key={item.to} to={item.to} onClick={onClose} className="menu-item-light border-b border-black/5">
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={onClose}
+                className="menu-item-light group border-b border-black/5 transition-all duration-300 ease-out"
+                style={{
+                  transitionProperty: 'opacity, transform',
+                  opacity: itemsIn ? 1 : 0,
+                  transform: itemsIn ? 'translateX(0)' : 'translateX(12px)',
+                  transitionDelay: `${i * 40}ms`,
+                }}
+              >
                 <span className="flex items-center gap-3">
-                  <span className={`menu-icon-chip ${item.bg}`}>
+                  <span className={`menu-icon-chip ${item.bg} transition-transform duration-200 group-hover:scale-110 group-active:scale-95`}>
                     <Icon size={18} className={item.fg} />
                   </span>
                   {item.label}
                 </span>
-                <ChevronRight size={16} className="text-navy-950/25" />
+                <ChevronRight
+                  size={16}
+                  className="text-navy-950/25 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-navy-950/50"
+                />
               </Link>
             )
           })}
@@ -77,11 +114,15 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             <ChevronRight size={16} className="text-navy-950/25" />
           </Link>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-5 py-4 text-xs text-navy-950/40">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-5 py-4 text-xs font-semibold">
             {LEGAL_LINKS.map((link, i) => (
               <span key={link.to} className="flex items-center gap-3">
-                {i > 0 && <span className="text-navy-950/20">·</span>}
-                <Link to={link.to} onClick={onClose} className="hover:text-navy-950/70 transition-colors">
+                {i > 0 && <span className="text-navy-950/15">·</span>}
+                <Link
+                  to={link.to}
+                  onClick={onClose}
+                  className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent hover:opacity-75 transition-opacity"
+                >
                   {link.label}
                 </Link>
               </span>
